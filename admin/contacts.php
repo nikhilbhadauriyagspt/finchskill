@@ -1,8 +1,14 @@
 <?php
-$page_title = "Contact Inquiries";
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/includes/auth.php';
+checkAdminAuth();
 
-// Handle Actions
+$success_msg = '';
+if (isset($_GET['msg'])) {
+    if ($_GET['msg'] === 'deleted') $success_msg = 'Inquiry deleted successfully!';
+    if ($_GET['msg'] === 'status_updated') $success_msg = 'Inquiry status updated successfully!';
+}
+
+// Handle Actions BEFORE HTML output
 if (isset($_GET['action']) && isset($_GET['id'])) {
     $id = (int)$_GET['id'];
     if ($_GET['action'] === 'delete') {
@@ -43,9 +49,22 @@ $inquiries = $stmt->fetchAll();
 
 // Mark unread as read
 $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
+
+$page_title = "Contact Inquiries";
+require_once __DIR__ . '/includes/header.php';
 ?>
 
 <div class="space-y-4">
+
+    <?php if (!empty($success_msg)): ?>
+        <div class="p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-md flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                <span class="font-medium"><?= htmlspecialchars($success_msg) ?></span>
+            </div>
+            <button onclick="this.parentElement.remove()" class="text-emerald-500 hover:text-emerald-700"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    <?php endif; ?>
 
     <!-- PAGE HEADER -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-md border border-slate-200">
@@ -59,7 +78,7 @@ $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
             <p class="text-xs text-slate-400 mt-0.5">Manage messages and student inquiries sent through the public contact form</p>
         </div>
         <div class="flex items-center gap-2">
-            <a href="../contact.php" target="_blank" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors flex items-center gap-1.5 no-underline">
+            <a href="../contact.php" target="_blank" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors flex items-center gap-1 no-underline">
                 <i class="fa-solid fa-envelope text-[11px]"></i>
                 <span>Public Contact Page</span>
             </a>
@@ -68,9 +87,9 @@ $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
 
     <!-- FILTER & SEARCH BAR -->
     <div class="bg-white border border-slate-200 rounded-md p-3">
-        <form method="GET" action="contacts.php" class="flex flex-wrap items-center justify-between gap-2.5">
+        <form method="GET" action="contacts.php" class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex flex-wrap items-center gap-2">
-                <select name="status" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
+                <select name="status" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
                     <option value="">All Statuses</option>
                     <option value="New" <?= $filter_status === 'New' ? 'selected' : '' ?>>New</option>
                     <option value="In Progress" <?= $filter_status === 'In Progress' ? 'selected' : '' ?>>In Progress</option>
@@ -98,13 +117,13 @@ $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
             <table class="w-full text-left text-xs">
                 <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider">
                     <tr>
-                        <th class="px-4 py-2.5">#</th>
-                        <th class="px-4 py-2.5">Sender Info</th>
-                        <th class="px-4 py-2.5">Subject</th>
-                        <th class="px-4 py-2.5">Message Snippet</th>
-                        <th class="px-4 py-2.5">Status</th>
-                        <th class="px-4 py-2.5">Received Date</th>
-                        <th class="px-4 py-2.5 text-right">Actions</th>
+                        <th class="px-4 py-2">#</th>
+                        <th class="px-4 py-2">Sender Info</th>
+                        <th class="px-4 py-2">Subject</th>
+                        <th class="px-4 py-2">Message Snippet</th>
+                        <th class="px-4 py-2">Status</th>
+                        <th class="px-4 py-2">Received Date</th>
+                        <th class="px-4 py-2 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -119,9 +138,9 @@ $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
                     <?php else: ?>
                         <?php foreach ($inquiries as $idx => $row): ?>
                             <tr class="hover:bg-slate-50/80 transition-colors">
-                                <td class="px-4 py-2.5 font-mono text-[11px] text-slate-400"><?= $idx + 1 ?></td>
+                                <td class="px-4 py-2 font-mono text-[11px] text-slate-400"><?= $idx + 1 ?></td>
                                 
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2">
                                     <div class="font-semibold text-[#0e1e2e]"><?= htmlspecialchars($row['name']) ?></div>
                                     <div class="text-[11px] text-slate-500"><i class="fa-regular fa-envelope text-[9px] text-slate-400 mr-1"></i><a href="mailto:<?= htmlspecialchars($row['email']) ?>" class="hover:text-[#fe7c03] no-underline text-inherit"><?= htmlspecialchars($row['email']) ?></a></div>
                                     <?php if (!empty($row['phone'])): ?>
@@ -129,17 +148,17 @@ $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
                                     <?php endif; ?>
                                 </td>
 
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2">
                                     <span class="px-2 py-0.5 text-[10px] font-medium rounded bg-slate-100 text-slate-700 border border-slate-200 inline-block">
                                         <?= htmlspecialchars($row['subject'] ?? 'General') ?>
                                     </span>
                                 </td>
 
-                                <td class="px-4 py-2.5 text-slate-600 max-w-xs">
+                                <td class="px-4 py-2 text-slate-600 max-w-xs">
                                     <div class="truncate"><?= htmlspecialchars($row['message']) ?></div>
                                 </td>
 
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2">
                                     <div class="dropdown inline-block">
                                         <button class="px-2 py-0.5 text-[10px] font-semibold rounded border dropdown-toggle <?= $row['status'] === 'Resolved' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : ($row['status'] === 'In Progress' ? 'bg-sky-50 text-sky-700 border-sky-200' : 'bg-rose-50 text-rose-700 border-rose-200') ?>" type="button" data-bs-toggle="dropdown">
                                             <?= htmlspecialchars($row['status']) ?>
@@ -152,12 +171,12 @@ $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
                                     </div>
                                 </td>
 
-                                <td class="px-4 py-2.5 text-slate-400 text-[11px] whitespace-nowrap">
+                                <td class="px-4 py-2 text-slate-400 text-[11px] whitespace-nowrap">
                                     <?= date('d M Y', strtotime($row['created_at'])) ?><br>
                                     <span class="text-[10px]"><?= date('h:i A', strtotime($row['created_at'])) ?></span>
                                 </td>
 
-                                <td class="px-4 py-2.5 text-right">
+                                <td class="px-4 py-2 text-right">
                                     <div class="inline-flex items-center gap-1">
                                         <!-- View Modal -->
                                         <button type="button" class="w-7 h-7 rounded border border-slate-200 bg-white text-slate-600 hover:text-[#fe7c03] hover:border-orange-200 inline-flex items-center justify-center transition-colors" data-bs-toggle="modal" data-bs-target="#inquiryModal<?= $row['id'] ?>" title="View Message">
@@ -194,7 +213,7 @@ $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
                                                 <span class="text-[10px] text-slate-400 block uppercase font-bold">Subject</span>
                                                 <span class="font-semibold text-slate-800 text-sm"><?= htmlspecialchars($row['subject']) ?></span>
                                             </div>
-                                            <div class="grid grid-cols-2 gap-2 p-2.5 bg-slate-50 rounded border border-slate-100">
+                                            <div class="grid grid-cols-2 gap-2 p-2 bg-slate-50 rounded border border-slate-100">
                                                 <div>
                                                     <span class="text-[10px] text-slate-400 block uppercase">Email</span>
                                                     <a href="mailto:<?= htmlspecialchars($row['email']) ?>" class="font-semibold text-slate-800 hover:text-[#fe7c03]"><?= htmlspecialchars($row['email']) ?></a>
@@ -209,8 +228,8 @@ $pdo->query("UPDATE contact_inquiries SET is_read = 1 WHERE is_read = 0");
                                                 <div class="p-3 bg-slate-50 border border-slate-200 rounded text-slate-700 leading-relaxed whitespace-pre-wrap"><?= htmlspecialchars($row['message']) ?></div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer border-t border-slate-200 py-2.5 px-4 bg-slate-50">
-                                            <a href="mailto:<?= htmlspecialchars($row['email']) ?>?subject=Re: <?= urlencode($row['subject'] ?? 'Your Inquiry') ?>" class="px-3 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors no-underline inline-flex items-center gap-1.5">
+                                        <div class="modal-footer border-t border-slate-200 py-2 px-4 bg-slate-50">
+                                            <a href="mailto:<?= htmlspecialchars($row['email']) ?>?subject=Re: <?= urlencode($row['subject'] ?? 'Your Inquiry') ?>" class="px-3 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors no-underline inline-flex items-center gap-1">
                                                 <i class="fa-solid fa-reply text-[10px]"></i> Reply via Email
                                             </a>
                                             <button type="button" class="px-3 py-1.5 text-xs text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50" data-bs-dismiss="modal">Close</button>

@@ -7,6 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/../cron-seat-reminders.php';
 
 header('Content-Type: application/json');
 
@@ -14,6 +15,11 @@ header('Content-Type: application/json');
 if (empty($_SESSION['admin_logged_in'])) {
     echo json_encode(['success' => false, 'message' => 'Unauthorized']);
     exit;
+}
+
+// Background Seat Reminder & Expiry Engine (throttled every 10 mins internally)
+if (function_exists('runSeatReminderEngine')) {
+    runSeatReminderEngine($pdo, false);
 }
 
 try {
@@ -151,6 +157,34 @@ try {
         ];
     }
 
+    // Seat Alerts: Expiring seats (<= 24 hours left, no admission submitted)
+    $stmt_exp = $pdo->query("SELECT id, name, booked_course, seat_valid_until FROM students 
+        WHERE seat_status IN ('Confirmed', 'Reserved') 
+          AND payment_status = 'Paid' 
+          AND (admission_id IS NULL OR admission_id = 0)
+          AND seat_valid_until IS NOT NULL 
+          AND seat_valid_until > NOW() 
+          AND seat_valid_until <= DATE_ADD(NOW(), INTERVAL 24 HOUR)
+        ORDER BY seat_valid_until ASC LIMIT 3");
+    $expiring_seats = $stmt_exp->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($expiring_seats as $es) {
+        $hours_left = max(0, round((strtotime($es['seat_valid_until']) - time()) / 3600));
+        $recent_items[] = [
+            'title' => 'Seat Expiring (' . $hours_left . 'h): ' . $es['name'],
+            'desc'  => ($es['booked_course'] ?: 'Reserved Seat') . ' - Exp: ' . date('d M h:i A', strtotime($es['seat_valid_until'])),
+            'url'   => 'students.php?filter=expiring',
+            'icon'  => 'fa-clock',
+            'color' => '#dc2626',
+            'time'  => $hours_left . 'h left'
+        ];
+    }
+
+    $expiring_count = count($expiring_seats);
+    $cancelled_today_count = (int)$pdo->query("SELECT COUNT(*) FROM students 
+        WHERE seat_status IN ('Cancelled', 'Expired') 
+          AND seat_cancelled_at >= DATE_SUB(NOW(), INTERVAL 24 HOUR)")->fetchColumn();
+
     echo json_encode([
         'success'      => true,
         'max_ids'      => [
@@ -160,10 +194,12 @@ try {
             'std' => $max_std
         ],
         'counts'       => [
-            'total_unread' => $total_unread,
-            'admissions'   => $unread_adm,
-            'fees'         => $unread_fee,
-            'inquiries'    => $unread_inq
+            'total_unread'    => $total_unread,
+            'admissions'      => $unread_adm,
+            'fees'            => $unread_fee,
+            'inquiries'       => $unread_inq,
+            'expiring_seats'  => $expiring_count,
+            'cancelled_seats' => $cancelled_today_count
         ],
         'has_new'      => count($new_alerts) > 0,
         'new_alerts'   => $new_alerts,

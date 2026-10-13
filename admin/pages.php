@@ -95,7 +95,7 @@ require_once __DIR__ . '/includes/header.php';
             <p class="text-xs text-slate-400 mt-0.5">Manage policy documents, terms &amp; conditions, and custom static website pages</p>
         </div>
         <div class="flex items-center gap-2">
-            <a href="page-edit.php" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors flex items-center gap-1.5 no-underline">
+            <a href="page-edit.php" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors flex items-center gap-1 no-underline">
                 <i class="fa-solid fa-plus text-[11px]"></i>
                 <span>Create New Page</span>
             </a>
@@ -168,17 +168,17 @@ require_once __DIR__ . '/includes/header.php';
 
     <!-- FILTER & SEARCH BAR -->
     <div class="bg-white border border-slate-200 rounded-md p-3">
-        <form method="GET" action="pages.php" class="flex flex-wrap items-center justify-between gap-2.5">
+        <form method="GET" action="pages.php" class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex flex-wrap items-center gap-2">
                 <!-- Status Filter -->
-                <select name="status" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
+                <select name="status" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
                     <option value="">All Statuses</option>
                     <option value="active" <?= $filter_status === 'active' ? 'selected' : '' ?>>Active Only</option>
                     <option value="inactive" <?= $filter_status === 'inactive' ? 'selected' : '' ?>>Inactive Only</option>
                 </select>
 
                 <!-- Type Filter -->
-                <select name="type" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
+                <select name="type" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
                     <option value="">All Page Types</option>
                     <option value="system" <?= $filter_type === 'system' ? 'selected' : '' ?>>System Policies</option>
                     <option value="custom" <?= $filter_type === 'custom' ? 'selected' : '' ?>>Custom Pages</option>
@@ -194,7 +194,7 @@ require_once __DIR__ . '/includes/header.php';
             <!-- Search Input -->
             <div class="relative w-full sm:w-64">
                 <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="Search page title, slug..." class="w-full text-xs bg-white border border-slate-200 rounded-md pl-8 pr-3 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
-                <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-[11px] text-slate-400"></i>
+                <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2 text-[11px] text-slate-400"></i>
             </div>
         </form>
     </div>
@@ -244,7 +244,7 @@ require_once __DIR__ . '/includes/header.php';
 
                                 <!-- Slug / URL -->
                                 <td class="px-4 py-3 font-mono text-[11px]">
-                                    <a href="../page.php?slug=<?= urlencode($p['slug']) ?>" target="_blank" class="text-slate-600 hover:text-[#fe7c03] flex items-center gap-1.5 no-underline">
+                                    <a href="../page.php?slug=<?= urlencode($p['slug']) ?>" target="_blank" class="text-slate-600 hover:text-[#fe7c03] flex items-center gap-1 no-underline">
                                         <span>/page.php?slug=<?= htmlspecialchars($p['slug']) ?></span>
                                         <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-slate-400"></i>
                                     </a>
@@ -285,7 +285,7 @@ require_once __DIR__ . '/includes/header.php';
 
                                 <!-- Actions -->
                                 <td class="px-4 py-3 text-right">
-                                    <div class="inline-flex items-center gap-1.5">
+                                    <div class="inline-flex items-center gap-1">
                                         <!-- Public View -->
                                         <a href="../page.php?slug=<?= urlencode($p['slug']) ?>" target="_blank" title="View Public Page" class="w-7 h-7 rounded border border-slate-200 bg-white text-slate-600 hover:text-[#fe7c03] hover:border-orange-200 flex items-center justify-center transition-colors no-underline">
                                             <i class="fa-solid fa-eye text-xs"></i>

@@ -115,7 +115,7 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
             </button>
             
             <div>
-                <div class="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                <div class="flex items-center gap-1 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
                     <span>Admin</span>
                     <i class="fa-solid fa-angle-right text-[9px] text-slate-300"></i>
                     <span class="text-[#fe7c03]"><?= $page_title ?? 'Dashboard' ?></span>
@@ -130,7 +130,7 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
         <div class="flex items-center gap-2 sm:gap-3">
             
             <!-- View Site Button -->
-            <a href="../index.php" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-[#fff8f3] hover:text-[#fe7c03] border border-slate-200 rounded-md transition-colors no-underline">
+            <a href="../index.php" target="_blank" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-[#fff8f3] hover:text-[#fe7c03] border border-slate-200 rounded-md transition-colors no-underline">
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 <span>View Site</span>
             </a>
@@ -223,15 +223,15 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
                         <p class="text-[10px] text-slate-400 truncate"><?= htmlspecialchars($_SESSION['admin_email'] ?? 'admin@finchskills.com') ?></p>
                     </div>
                     <div class="p-1">
-                        <a href="settings.php" class="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-700 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors no-underline">
+                        <a href="settings.php" class="flex items-center gap-2 px-2 py-1.5 text-xs text-slate-700 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors no-underline">
                             <i class="fa-solid fa-sliders text-xs w-4 text-slate-400"></i>
                             <span>Settings</span>
                         </a>
-                        <a href="payment-settings.php" class="flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-700 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors no-underline">
+                        <a href="payment-settings.php" class="flex items-center gap-2 px-2 py-1.5 text-xs text-slate-700 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors no-underline">
                             <i class="fa-solid fa-credit-card text-xs w-4 text-slate-400"></i>
                             <span>Payment Gateways</span>
                         </a>
-                        <a href="logout.php" class="flex items-center gap-2 px-2.5 py-1.5 text-xs text-rose-600 hover:bg-rose-50 rounded transition-colors no-underline border-t border-slate-100 mt-1">
+                        <a href="logout.php" class="flex items-center gap-2 px-2 py-1.5 text-xs text-rose-600 hover:bg-rose-50 rounded transition-colors no-underline border-t border-slate-100 mt-1">
                             <i class="fa-solid fa-right-from-bracket text-xs w-4"></i>
                             <span>Logout</span>
                         </a>

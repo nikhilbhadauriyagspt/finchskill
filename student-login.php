@@ -1,10 +1,21 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    if (ini_get('session.cookie_path') !== '/') {
+        @ini_set('session.cookie_path', '/');
+    }
+    @session_set_cookie_params([
+        'path' => '/',
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
+    session_start();
+}
 require_once __DIR__ . '/db.php';
 
-// If already logged in, redirect to profile
+// If already logged in, redirect to target or profile
 if (isset($_SESSION['student_logged_in']) && $_SESSION['student_logged_in'] === true) {
-    header("Location: student-profile.php");
+    $redirect = !empty($_GET['redirect']) ? $_GET['redirect'] : 'student-profile.php';
+    header("Location: " . $redirect);
     exit;
 }
 
@@ -147,14 +158,14 @@ include "header.php";
             </div>
 
             <?php if (!empty($error)): ?>
-                <div class="alert alert-danger py-2.5 px-3 small d-flex align-items-center mb-4" role="alert">
+                <div class="alert alert-danger py-2 px-3 small d-flex align-items-center mb-4" role="alert">
                     <i class="fa-solid fa-circle-exclamation me-2 fs-6"></i>
                     <div><?= $error ?></div>
                 </div>
             <?php endif; ?>
 
             <?php if (!empty($success)): ?>
-                <div class="alert alert-success py-2.5 px-3 small d-flex align-items-center mb-4" role="alert">
+                <div class="alert alert-success py-2 px-3 small d-flex align-items-center mb-4" role="alert">
                     <i class="fa-solid fa-circle-check me-2 fs-6"></i>
                     <div><?= htmlspecialchars($success) ?></div>
                 </div>
@@ -192,7 +203,7 @@ include "header.php";
                 </button>
 
                 <div class="text-center mt-3 small text-muted">
-                    Don't have an account yet? <a href="register.php" class="fw-bold text-decoration-none" style="color: #fe7c03;">Register Yourself &rarr;</a>
+                    Don't have an account yet? <a href="register.php<?= !empty($_GET['redirect']) ? '?redirect=' . urlencode($_GET['redirect']) : '' ?>" class="fw-bold text-decoration-none" style="color: #fe7c03;">Registration &rarr;</a>
                 </div>
 
             </form>

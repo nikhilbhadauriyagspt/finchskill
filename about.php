@@ -1,1080 +1,1045 @@
-<!-- Header  -->
-<?php include "header.php" ?>
-
-
-<!-- ===================================== -->
-<!-- HERO SECTION -->
-<!-- ===================================== -->
-
-<section class="eduplc-section eduplc-bg-gradient">
-  <div class="container">
-    <div class="row align-items-center g-4">
-
-      <div class="col-md-6">
-
-        <!-- BADGE -->
-
-        <div class="educrsv2-top-badge">
-
-          <i class="fa-solid fa-graduation-cap"></i>
-
-          <span>Who we are & What we do ?</span>
-
-        </div>
-
-        <h1 class="eduplc-title ">
-          About
-          <span style="color:#ffb606;">Finchskills</span>
-          Institute
-        </h1>
-
-        <p class="eduplc-subtitle">
-          FinchSkills Institute is a practical training platform built to make you job-ready, not just give you a
-          certificate.
-          Our focus is simple - skills that directly help you grow
-        </p>
-
-        <div class="row mt-0 g-4">
-
-          <div class="col-4">
-            <div class="text-center">
-              <div>
-                <i class="fa-solid fa-plane-departure text-warning fs-4"></i>
-              </div>
-
-              <p class="fw-bold mt-2 mb-0">
-                Aviation
-              </p>
-
-            </div>
-
-          </div>
-
-          <div class="col-4">
-            <div class="text-center">
-              <div>
-                <i class="fa-solid fa-hotel text-warning fs-4"></i>
-              </div>
-
-              <p class="fw-bold mt-2 mb-0">
-                Hospitality
-              </p>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <div class="text-center">
-              <div>
-                <i class="fa-solid fa-earth-asia text-warning fs-4"></i>
-              </div>
-
-              <p class="fw-bold mt-2 mb-0">
-                Tourism
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="col-md-6 text-center">
-
-        <img src="img/about-hero.png" alt="placement illustration" class="img-fluid rounded-4 shadow-lg"
-          style="max-width:100%;">
-
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===================================== -->
-<!-- SKILLS SECTION -->
-<!-- ===================================== -->
-
-<section class="learning-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- LEFT IMAGE -->
-
-      <div class="col-md-6">
-        <div class="learning-image-wrapper">
-          <!-- MAIN PERSON IMAGE -->
-
-          <div class="learning-image">
-            <img src="img/about.png" alt="" />
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT CONTENT -->
-
-      <div class="col-md-6">
-        <div class="learning-content">
-          <h2>About <span style="color: #f5b000;">Finchskills</span> Institute</h2>
-
-          <div class="sub-text">
-            Finchskills Institute is focused on building real careers in
-            aviation, hospitality, travel, and cruise industries. We don’t
-            just teach theory we train students with practical skills that
-            match actual job requirements. Our goal is simple: make students
-            confident, skilled, and ready to work in professional
-            environments. Every course is designed with industry needs in
-            mind, so students learn what companies actually expect.
-          </div>
-          <p>
-            We provide both online and offline training, giving students the
-            flexibility to learn in the way that suits them best. With
-            guidance from experienced trainers, students gain hands-on
-            knowledge, improve communication, and develop the personality
-            required for service-based industries. At Finchskills Institute,
-            we believe skills matter more than just degrees. That’s why our
-            focus is on real learning, not just classroom teaching. We also
-            support students with career guidance and placement assistance,
-            helping them take the next step after completing their training.
-          </p>
-
-          <!-- BUTTON -->
-
-          <!-- <a href="#" class="learn-btn">
-                            Explore Courses
-                        </a> -->
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FIXED SIDEBAR ================= -->
-
-<!-- ================= WHYFinchskills InstituteSECTION ================= -->
-
-<section class="why-section">
-  <div class="container">
-    <h2 class="section-title text-center">Our Commitment to Every Student</h2>
-
-    <p class="section-subtitle text-center">
-      We are committed to giving every student the right skills, proper guidance, and real support needed to
-      build a successful career. From training to placement assistance, our focus is on helping you grow with
-      confidence and step into the industry fully prepared.
-    </p>
-
-    <div class="row g-4 mt-4">
-      <div class="col-md-4">
-        <div class="why-airavis-card">
-          <div class="why-airavis-card-content text-center">
-            <div class="icon mb-3">
-              <i class="fas fa-eye fa-2x text-warning"></i>
-            </div>
-            <div class="why-airavis-card-title">
-              <h4 class="text-dark">Our Vision</h4>
-              <p class="text-muted">
-                Our vision is to become a trusted institute for aviation, hospitality, travel, and cruise training by
-                creating
-                skilled professionals who are confident, capable, and ready for real industry opportunities.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="why-airavis-card">
-          <div class="why-airavis-card-content text-center">
-            <div class="icon mb-3">
-              <i class="fas fa-bullseye fa-2x text-warning"></i>
-            </div>
-            <div class="why-airavis-card-title">
-              <h4>Our Mission</h4>
-              <p>
-                Our mission is to provide practical, career-focused training that helps students build real skills and
-                become job-ready. We aim to bridge the gap between learning and industry by delivering simple,
-                effective, and result-oriented training programs
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="why-airavis-card">
-          <div class="why-airavis-card-content text-center">
-            <div class="icon mb-3">
-              <i class="fas fa-eye fa-2x text-warning"></i>
-            </div>
-            <div class="why-airavis-card-title">
-              <h4 class="text-dark">Our Values</h4>
-              <p class="text-muted">
-                We believe in practical learning, honesty, and real career growth. Our focus is on delivering quality
-                training, supporting every student, and building skills that truly matter in the real world.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="row">
-                <div class="col-lg-6">
-                    <h2 class="section-title">
-                        WhyFinchskills InstituteStands Out
-                    </h2>
-                    <p class="section-subtitle">
-                        Experience practical online learning designed to help
-                        you build skills, confidence, and career success.
-                    </p>
-                    <div class="accordion" id="whyAccordion">
-
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header">
-
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#itemOne">
-
-                                    Career-Oriented Courses
-
-                                </button>
-
-                            </h2>
-
-                            <div id="itemOne" class="accordion-collapse collapse show" data-bs-parent="#whyAccordion">
-
-                                <div class="accordion-body">
-
-                                    Learn industry-relevant skills through structured
-                                    programs designed for real-world opportunities.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#itemTwo">
-
-                                    Live Expert Mentorship
-
-                                </button>
-
-                            </h2>
-
-                            <div id="itemTwo" class="accordion-collapse collapse" data-bs-parent="#whyAccordion">
-
-                                <div class="accordion-body">
-
-                                    Get guidance from experienced mentors and
-                                    trainers through interactive online sessions.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#itemThree">
-
-                                    Flexible Online Learning
-
-                                </button>
-
-                            </h2>
-
-                            <div id="itemThree" class="accordion-collapse collapse" data-bs-parent="#whyAccordion">
-
-                                <div class="accordion-body">
-
-                                    Access courses anytime and study comfortably
-                                    from anywhere at your own pace.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="accordion-item">
-
-                            <h2 class="accordion-header">
-
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#itemFour">
-
-                                    Certifications & Career Support
-
-                                </button>
-
-                            </h2>
-
-                            <div id="itemFour" class="accordion-collapse collapse" data-bs-parent="#whyAccordion">
-
-                                <div class="accordion-body">
-
-                                    Earn recognized certifications and receive
-                                    career guidance to achieve your professional goals.
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="image-wrapper">
-
-
-                        <div class="border-box"></div>
-
-
-                        <div class="yellow-bg"></div>
-
-
-                        <div class="main-image">
-
-                            <img src="img/why-learners-choose-us-img.webp" alt="Student">
-
-                        </div>
-
-                    </div>
-                </div>
-            </div> -->
-  </div>
-</section>
-
-<!-- ===================================== -->
-<!-- COUNTER ANIMATION SECTION  -->
-<!-- ===================================== -->
-<section class="counter-animation">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-6 col-md-3">
-        <div class="counter-card text-center">
-          <h3 class="fs-1 text-light">70+</h3>
-          <p class="text-light">Competition</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="counter-card text-center">
-          <h3 class="fs-1 text-light">6+</h3>
-          <p class="text-light">Year of Experience</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="counter-card text-center">
-          <h3 class="fs-1 text-light">1000+</h3>
-          <p class="text-light">Regular Students</p>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="counter-card text-center">
-          <h3 class="fs-1 text-light">12+</h3>
-          <p class="text-light">Skilled Teachers</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================================== -->
-<!-- HOW LEARNING WORKS -->
-<!-- ===================================== -->
-<section class="hlw-section">
-  <div class="container">
-    <!-- HEADING -->
-
-    <div class="hlw-heading-wrap">
-      <h2 class="hlw-title">How Learning Works at <span style="color: #f5b000;">Finchskills</span> Institute</h2>
-
-      <p class="hlw-subtitle">
-        Our training follows a clear, step-by-step process from enrolment to skill development and career
-        support. Each stage focuses on practical learning, building confidence, and preparing you for real job
-        opportunities.
-      </p>
-    </div>
-
-    <!-- ROW -->
-
-    <div class="row g-4">
-      <!-- STEP 1 -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="hlw-card">
-          <div class="hlw-step-tag">STEP 1</div>
-
-          <h3 class="hlw-card-title">Select Your Course</h3>
-
-          <p class="hlw-card-text">
-            Choose a course that matches your career goals in aviation, hospitality, travel, or cruise. Each program
-            is
-            designed to give you the right skills for your chosen field.
-          </p>
-        </div>
-      </div>
-
-      <!-- STEP 2 -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="hlw-card">
-          <div class="hlw-step-tag">STEP 2</div>
-
-          <h3 class="hlw-card-title">Attend Interactive Classes </h3>
-
-          <p class="hlw-card-text">
-            Join engaging classes led by experienced trainers, where you learn through real examples, discussions,
-            and practical activities that build confidence.
-          </p>
-        </div>
-      </div>
-
-      <!-- STEP 3 -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="hlw-card">
-          <div class="hlw-step-tag">STEP 3</div>
-
-          <h3 class="hlw-card-title">Practice & Build Projects</h3>
-
-          <p class="hlw-card-text">
-            Apply what you learn through practical tasks and real-world exercises. This approach helps you build
-            confidence, improve skills, and prepare for real job situations.
-          </p>
-        </div>
-      </div>
-
-      <!-- STEP 4 -->
-
-      <div class="col-lg-3 col-md-6">
-        <div class="hlw-card">
-          <div class="hlw-step-tag">STEP 4</div>
-
-          <h3 class="hlw-card-title">Get Certificate & Grow</h3>
-
-          <p class="hlw-card-text">
-            Get certifications that add value to your profile. With the right skills, you’ll be prepared for new
-            career
-            opportunities with confidence.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ed-skills-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- LEFT -->
-
-      <div class="col-lg-6">
-        <div class="ed-skills-left">
-          <!-- TITLE -->
-
-          <h2 class="ed-skills-title">
-            Upgrade Your Skills with Industry Focused Training
-          </h2>
-
-          <!-- TEXT -->
-
-          <p class="ed-skills-text">
-            Finchskills Institute helps students build practical, job-ready skills through expert training and
-            real-world
-            learning. Our programs are simple, focused, and designed to match actual industry needs, so you gain
-            confidence and step into your career with clarity.
-          </p>
-
-          <!-- BUTTONS -->
-
-          <div class="ed-skills-btns">
-            <a href="courses.php" class="ed-btn-primary">
-              Explore Courses
-            </a>
-
-            <a href="form-submission.php" class="ed-btn-secondary">
-              Register Now
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT -->
-
-      <div class="col-lg-6">
-        <div class="ed-stats-grid">
-          <!-- CARD 1 -->
-
-          <div class="ed-stat-card">
-            <h3 class="ed-stat-number">
-              <span>5</span>
-              <span>K+</span>
-            </h3>
-
-            <p class="ed-stat-text">Happy Students With Finchskills Institute</p>
-          </div>
-
-          <!-- CARD 2 -->
-
-          <div class="ed-stat-card">
-            <h3 class="ed-stat-number">
-              <span>15</span>
-              <span>+</span>
-            </h3>
-
-            <p class="ed-stat-text">
-              Professional and career-focused courses
-            </p>
-          </div>
-
-          <!-- CARD 3 -->
-
-          <div class="ed-stat-card">
-            <h3 class="ed-stat-number">
-              <span>12</span>
-              <span>+</span>
-            </h3>
-
-            <p class="ed-stat-text">Expert trainers in Finchskills Institute</p>
-          </div>
-
-          <!-- CARD 4 -->
-
-          <div class="ed-stat-card">
-            <h3 class="ed-stat-number">
-              <span>98</span>
-              <span>%</span>
-            </h3>
-
-            <p class="ed-stat-text">
-              Student satisfaction and success rate
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================================== -->
-<!-- PROFESSIONAL INSTRUCTORS -->
-<!-- ===================================== -->
-
-<!-- <section class="proinst-section">
-
-        <div class="container">
-
-
-            <div class="row align-items-center proinst-top">
-
-
-                <div class="col-lg-8">
-
-                    <h2 class="proinst-title">
-                        Learn from Expert Trainers
-                    </h2>
-
-                    <p class="proinst-subtitle">
-                        Meet experienced mentors and professionals guiding your learning journey.
-                    </p>
-
+<?php
+$page_title = "About Us - Finchskills Institute | Aviation, Hospitality, Travel & Cruise Training";
+include "header.php";
+?>
+
+<style>
+/* ================= ABOUT US PAGE STYLES (HOMEPAGE MATCHING) ================= */
+.abt-hero-section {
+    background: linear-gradient(180deg, #fffbf8 0%, #ffffff 100%);
+    padding: 60px 0 75px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #f1f5f9;
+}
+.abt-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff8f3;
+    border: 1px solid #ffd8bf;
+    padding: 6px 18px 6px 8px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+.abt-hero-badge-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fe7c03 0%, #ff5200 100%);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+.abt-hero-badge-text {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #9a3412;
+    letter-spacing: 0.3px;
+}
+.abt-hero-title {
+    font-size: 48px;
+    line-height: 1.18;
+    font-weight: 900;
+    color: #0e1e2e;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+.abt-hero-title .highlight {
+    color: #fe7c03;
+}
+.abt-hero-text {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: #475569;
+    margin-bottom: 26px;
+    max-width: 580px;
+}
+.abt-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.abt-tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    padding: 7px 15px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    transition: all 0.25s ease;
+}
+.abt-tag-pill:hover {
+    border-color: #fe7c03;
+    color: #fe7c03;
+    transform: translateY(-2px);
+}
+.abt-tag-pill i {
+    color: #fe7c03;
+    font-size: 13.5px;
+}
+.abt-hero-image-wrap {
+    position: relative;
+    text-align: center;
+}
+.abt-hero-image-wrap img {
+    border-radius: 22px;
+    border: 1px solid #e2e8f0;
+    width: 100%;
+    max-width: 500px;
+}
+.abt-floating-badge {
+    position: absolute;
+    bottom: -18px;
+    left: 20px;
+    background: #ffffff;
+    border: 1.5px solid #fed7aa;
+    border-radius: 14px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+.abt-floating-badge i {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #fff7ed;
+    color: #fe7c03;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+/* SECTION HEADINGS */
+.abt-section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff8f3;
+    border: 1px solid #ffd8bf;
+    padding: 5px 15px;
+    border-radius: 50px;
+    color: #fe7c03;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+.abt-section-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: #0e1e2e;
+    line-height: 1.25;
+    margin-bottom: 16px;
+}
+.abt-section-title .highlight {
+    color: #fe7c03;
+}
+.abt-section-subtitle {
+    font-size: 15.5px;
+    color: #64748b;
+    line-height: 1.7;
+    max-width: 680px;
+}
+
+/* STORY / ABOUT SECTION */
+.abt-story-section {
+    padding: 85px 0;
+    background: #ffffff;
+}
+.abt-story-img-wrap {
+    position: relative;
+}
+.abt-story-img-wrap img {
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    width: 100%;
+}
+.abt-feature-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.abt-check-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ecfdf5;
+    color: #059669;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* VALUE PILLARS CARDS */
+.abt-values-section {
+    padding: 85px 0;
+    background: #fafbfc;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+}
+.abt-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 34px 28px;
+    height: 100%;
+    transition: all 0.25s ease;
+    box-shadow: none !important;
+    position: relative;
+    overflow: hidden;
+}
+.abt-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+.abt-card:hover {
+    transform: translateY(-4px);
+    border-color: #ffd8bf;
+    background: #fffcf9;
+}
+.abt-card:hover::before {
+    background: linear-gradient(90deg, #fe7c03, #ff5200);
+}
+.abt-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 15px;
+    background: #fff7ed;
+    border: 1px solid #ffedd5;
+    color: #fe7c03;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.abt-card:hover .abt-card-icon {
+    background: linear-gradient(135deg, #fe7c03 0%, #ff5200 100%);
+    color: #ffffff;
+    border-color: transparent;
+    transform: scale(1.05);
+}
+.abt-card h4 {
+    font-size: 19px;
+    font-weight: 800;
+    color: #0e1e2e;
+    margin-bottom: 12px;
+}
+.abt-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 0;
+}
+
+/* STATS COUNTER STRIP */
+.abt-counter-section {
+    background: #0e1e2e;
+    padding: 55px 0;
+    position: relative;
+}
+.abt-stat-box {
+    text-align: center;
+    padding: 15px 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.abt-stat-box:last-child {
+    border-right: none;
+}
+.abt-stat-number {
+    font-size: 42px;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 4px;
+    line-height: 1;
+}
+.abt-stat-number span {
+    color: #fe7c03;
+}
+.abt-stat-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+}
+
+/* 4-STEP FINCHSKILLS ENROLLMENT & LEARNING FLOW */
+.abt-process-section {
+    padding: 85px 0;
+    background: #ffffff;
+}
+.abt-process-grid {
+    position: relative;
+}
+.abt-step-col {
+    position: relative;
+}
+@media (min-width: 992px) {
+    .abt-step-col:not(:last-child)::after {
+        content: '\f054';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        right: -13px;
+        top: 45%;
+        transform: translateY(-50%);
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1.5px solid #fed7aa;
+        color: #fe7c03;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        z-index: 2;
+    }
+}
+.abt-step-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px 20px;
+    height: 100%;
+    position: relative;
+    transition: all 0.25s ease;
+    box-shadow: none !important;
+    display: flex;
+    flex-direction: column;
+}
+.abt-step-card:hover {
+    transform: translateY(-3px);
+    border-color: #fe7c03;
+    background: #fffcf9;
+}
+.abt-step-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.abt-step-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: #fff7ed;
+    color: #fe7c03;
+    font-weight: 800;
+    font-size: 11.5px;
+    border: 1px solid #fed7aa;
+    letter-spacing: 0.5px;
+}
+.abt-step-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #fff7ed;
+    color: #fe7c03;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.25s ease;
+}
+.abt-step-card:hover .abt-step-icon {
+    background: linear-gradient(135deg, #fe7c03 0%, #ff5200 100%);
+    color: #ffffff;
+}
+.abt-step-card h4 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0e1e2e;
+    margin-bottom: 10px;
+}
+.abt-step-card p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #64748b;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+.abt-step-action {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px dashed #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.abt-step-link {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fe7c03;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+}
+.abt-step-link:hover {
+    color: #ff5200;
+    gap: 9px;
+}
+.abt-step-subnote {
+    font-size: 11px;
+    font-weight: 600;
+    color: #16a34a;
+    background: #f0fdf4;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid #bbf7d0;
+}
+
+/* RECOGNITIONS */
+.abt-recognition-section {
+    padding: 80px 0;
+    background: #fafbfc;
+    border-top: 1px solid #f1f5f9;
+}
+.abt-recognition-box {
+    background: #ffffff;
+    border: 1.5px solid #fed7aa;
+    border-radius: 20px;
+    padding: 44px 38px;
+    box-shadow: none !important;
+}
+
+@media (max-width: 991px) {
+    .abt-hero-title {
+        font-size: 36px;
+    }
+    .abt-hero-section {
+        padding: 45px 0 55px;
+    }
+    .abt-stat-box {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 15px 10px;
+    }
+    .abt-stat-box:last-child {
+        border-bottom: none;
+    }
+    .abt-floating-badge {
+        position: static;
+        margin-top: 18px;
+    }
+}
+@media (max-width: 575px) {
+    .abt-hero-title {
+        font-size: 27px;
+    }
+    .abt-section-title {
+        font-size: 26px;
+    }
+    .abt-stat-number {
+        font-size: 32px;
+    }
+    .abt-card {
+        padding: 24px 18px;
+    }
+    .abt-recognition-box {
+        padding: 28px 20px;
+    }
+}
+</style>
+
+<!-- ================= 1. HERO SECTION ================= -->
+<section class="abt-hero-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <!-- TOP BADGE -->
+                <div class="abt-hero-badge">
+                    <span class="abt-hero-badge-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </span>
+                    <span class="abt-hero-badge-text">
+                        ABOUT FINCHSKILLS INSTITUTE <span class="badge-dot">•</span> EMPOWERING CAREERS
+                    </span>
                 </div>
 
+                <h1 class="abt-hero-title">
+                    Building Practical Skills. <br>
+                    Shaping <span class="highlight">Job-Ready</span> Futures.
+                </h1>
 
-                <div class="col-lg-4">
+                <p class="abt-hero-text">
+                    Finchskills Institute is a premier skill-development academy dedicated to preparing aspiring students for high-growth careers across <strong>Aviation</strong>, <strong>Hospitality</strong>, <strong>Travel &amp; Tourism</strong>, and <strong>Cruise Management</strong>. We don't just teach theory &mdash; we equip you with real, actionable competencies required by top employers.
+                </p>
 
-                    <div class="proinst-btn-wrap">
+                <!-- TAG PILLS -->
+                <div class="abt-hero-tags">
+                    <span class="abt-tag-pill">
+                        <i class="fa-solid fa-plane-departure"></i> Aviation Management
+                    </span>
+                    <span class="abt-tag-pill">
+                        <i class="fa-solid fa-hotel"></i> Hospitality &amp; Guest Relations
+                    </span>
+                    <span class="abt-tag-pill">
+                        <i class="fa-solid fa-earth-americas"></i> Travel &amp; Ticketing
+                    </span>
+                    <span class="abt-tag-pill">
+                        <i class="fa-solid fa-ship"></i> Cruise Management
+                    </span>
+                </div>
 
-                        <a href="#" class="proinst-btn">
-
-                            Explore All Mentors
-
+                <!-- HERO BUTTONS MATCHING HOMEPAGE -->
+                <div class="hero-btns">
+                    <a href="courses.php" class="hero-btn hero-btn-register">
+                        <span>Explore All Courses</span>
+                        <i class="fa-solid fa-arrow-right ms-2 hero-btn-arrow"></i>
+                    </a>
+                    <?php if (!empty($isStudentLoggedIn)): ?>
+                        <a href="seat-reservation.php" class="hero-btn hero-btn-fee">
+                            <i class="fa-solid fa-chair me-2"></i>
+                            <span>Reserve Your Seat</span>
+                            <i class="fa-solid fa-chevron-right ms-2 hero-btn-arrow"></i>
                         </a>
-
-                    </div>
-
+                    <?php else: ?>
+                        <a href="register.php?redirect=seat-reservation.php" class="hero-btn hero-btn-fee">
+                            <i class="fa-solid fa-chair me-2"></i>
+                            <span>Reserve Your Seat</span>
+                            <i class="fa-solid fa-chevron-right ms-2 hero-btn-arrow"></i>
+                        </a>
+                    <?php endif; ?>
                 </div>
-
             </div>
 
-
-            <div class="row g-4">
-
-
-                <div class="col-lg-3 col-md-6">
-
-                    <div class="proinst-card">
-
-                        <div class="proinst-img-wrap">
-
-                            <img src="img/avatar-instructor.jpg" alt="" class="proinst-img">
-
-
-                            <div class="proinst-social">
-
-                                <a href="#">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-x-twitter"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-youtube"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-linkedin-in"></i>
-                                </a>
-
-                            </div>
-
+            <div class="col-lg-5">
+                <div class="abt-hero-image-wrap">
+                    <img src="img/about-hero.png" alt="About Finchskills Institute" class="img-fluid">
+                    <div class="abt-floating-badge">
+                        <i class="fa-solid fa-award"></i>
+                        <div>
+                            <div class="fw-bold text-dark" style="font-size: 14px;">100% Practical Focused</div>
+                            <div class="text-muted small">Simulation Labs &amp; Placement Support</div>
                         </div>
-
-                        <div class="proinst-content">
-
-                            <div class="proinst-info">
-
-                                <span>
-                                    <strong>12K+</strong> Students
-                                </span>
-
-                                <span>
-                                    <strong>15</strong> Courses
-                                </span>
-
-                            </div>
-
-                            <a href="#" class="proinst-portfolio-btn">
-
-                                View Profile
-
-                            </a>
-
-                        </div>
-
                     </div>
-
                 </div>
-
-
-                <div class="col-lg-3 col-md-6">
-
-                    <div class="proinst-card">
-
-                        <div class="proinst-img-wrap">
-
-                            <img src="img/avatar-instructor-02.jpg" alt="" class="proinst-img">
-
-
-                            <div class="proinst-social">
-
-                                <a href="#">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-x-twitter"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-youtube"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-linkedin-in"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                        <div class="proinst-content">
-
-                            <div class="proinst-info">
-
-                                <span>
-                                    <strong>10K+</strong> Students
-                                </span>
-
-                                <span>
-                                    <strong>12</strong> Courses
-                                </span>
-
-                            </div>
-
-                            <a href="#" class="proinst-portfolio-btn">
-
-                                View Profile
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-lg-3 col-md-6">
-
-                    <div class="proinst-card">
-
-                        <div class="proinst-img-wrap">
-
-                            <img src="img/avatar-instructor-03.jpg" alt="" class="proinst-img">
-
-
-                            <div class="proinst-social">
-
-                                <a href="#">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-x-twitter"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-youtube"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-linkedin-in"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                        <div class="proinst-content">
-
-                            <div class="proinst-info">
-
-                                <span>
-                                    <strong>15K+</strong> Students
-                                </span>
-
-                                <span>
-                                    <strong>18</strong> Courses
-                                </span>
-
-                            </div>
-
-                            <a href="#" class="proinst-portfolio-btn">
-
-                                View Profile
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-lg-3 col-md-6">
-
-                    <div class="proinst-card">
-
-                        <div class="proinst-img-wrap">
-
-                            <img src="img/avatar-instructor-04.webp" alt="" class="proinst-img">
-
-
-                            <div class="proinst-social">
-
-                                <a href="#">
-                                    <i class="fa-brands fa-facebook-f"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-x-twitter"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-youtube"></i>
-                                </a>
-
-                                <a href="#">
-                                    <i class="fa-brands fa-linkedin-in"></i>
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                        <div class="proinst-content">
-
-                            <div class="proinst-info">
-
-                                <span>
-                                    <strong>9K+</strong> Students
-                                </span>
-
-                                <span>
-                                    <strong>10</strong> Courses
-                                </span>
-
-                            </div>
-
-                            <a href="#" class="proinst-portfolio-btn">
-
-                                View Profile
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
-
         </div>
-
-    </section> -->
-
-<!-- ================= TESTIMONIAL SECTION ================= -->
-
-<section class="testimonial-section">
-  <div class="container">
-    <div class="testimonial-wrapper">
-      <div class="row align-items-center g-4">
-        <!-- LEFT -->
-
-        <div class="col-lg-6">
-          <h2 class="section-title">What Our Learners Say</h2>
-
-          <p class="section-subtitle">
-            Hear from students who transformed their skills and achieved
-            their career goals with Finchskill Institute.
-          </p>
-
-          <!-- USER GROUP -->
-
-          <div class="user-group">
-            <div class="avatars">
-
-              <!-- USER 1 -->
-              <img src="img/womens-profile.png" class="testimonial-user active" alt="User" />
-
-              <!-- USER 2 -->
-              <img src="img/mens-profile.png" class="testimonial-user" alt="User" />
-
-              <!-- USER 3 -->
-              <img src="img/womens-profile.png" class="testimonial-user" alt="User" />
-
-              <!-- USER 4 -->
-              <img src="img/mens-profile.png" class="testimonial-user" alt="User" />
-
-              <!-- USER 5 -->
-              <img src="img/womens-profile.png" class="testimonial-user" alt="User" />
-
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT -->
-
-        <div class="col-lg-6">
-          <div class="owl-carousel testimonial-carousel owl-theme">
-            <!-- ITEM 1 -->
-
-            <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-author">
-                  <img src="img/womens-profile.png" alt="User" />
-                  <div class="author-content">
-                    <h4>Priya Sharma</h4>
-                    <span>Air Hostess</span>
-                  </div>
-                </div>
-                <p class="testimonial-text">
-                  "Finchskills Institute provided an excellent online learning experience. The trainers were supportive, the classes were interactive, and the personality development sessions greatly improved my confidence and communication skills."
-                </p>
-              </div>
-            </div>
-
-            <!-- ITEM 2 -->
-
-            <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-author">
-                  <img src="img/mens-profile.png" alt="User" />
-                  <div class="author-content">
-                    <h4>Rahul Verma</h4>
-                    <span>Airport Terminal Management</span>
-                  </div>
-                </div>
-                <p class="testimonial-text">
-                  "The course was well-organized and easy to follow. The faculty explained airport operations clearly, and the flexible online classes made learning convenient. Finchskills Institute is a great choice for professional skill development."
-                </p>
-              </div>
-            </div>
-
-            <!-- ITEM 3 -->
-
-            <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-author">
-                  <img src="img/womens-profile.png" alt="User" />
-                  <div class="author-content">
-                    <h4>Sneha Patel</h4>
-                    <span>Travel & Tourism</span>
-                  </div>
-                </div>
-                <p class="testimonial-text">
-                  "I had a wonderful experience learning with Finchskills Institute. The study material was informative, the trainers were knowledgeable, and the online sessions helped me build confidence and industry knowledge. Highly recommended!"
-                </p>
-              </div>
-            </div>
-
-            <!-- ITEM 4 -->
-
-            <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-author">
-                  <img src="img/mens-profile.png" alt="User" />
-                  <div class="author-content">
-                    <h4>Ankit Singh</h4>
-                    <span>Hotel Management</span>
-                  </div>
-                </div>
-                <p class="testimonial-text">
-                  "Finchskills Institute made online learning simple and engaging. The faculty was experienced, the course content was practical, and every session helped me improve my hospitality skills. It was a valuable learning experience that boosted my confidence."
-                </p>
-              </div>
-            </div>
-
-            <!-- ITEM 5 -->
-
-            <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-author">
-                  <img src="img/womens-profile.png" alt="User" />
-                  <div class="author-content">
-                    <h4>Ayesha Khan</h4>
-                    <span>Customer Service</span>
-                  </div>
-                </div>
-                <p class="testimonial-text">
-                  "The online course at Finchskills Institute exceeded my expectations. The trainers explained every topic clearly, and the practical examples made learning easy. I gained valuable customer service skills and felt more confident in my professional communication."
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
-
-    <!-- ================= INSTRUCTOR SECTION ================= -->
-
-    <section class="instructor-section">
-
-        <div class="container">
-
-            <div class="instructor-content">
-
-                <!-- TITLE -->
-
-                <h2 class="instructor-title">
-
-                    Recognitions, Certifications & <br>
-                    Industry Alignment.
-
-                </h2>
-
-                <!-- SUBTITLE -->
-
-                <p class="instructor-subtitle">
-
-                    Finchskills Institute is officially registered under the Ministry of Micro, Small & Medium Enterprises (Government of India) Operating in adherence to quality management standards, we deliver structured, reliable, and high-impact digital education. Our training programs are strategically designed to align with global distribution systems (Amadeus & Galileo GDS) and current airline ground handling standards, ensuring our students receive industry-grade, job-oriented skill sets.
-
-                </p>
-                <!-- BUTTON -->
-
-                <!--<a href="form-submission.php" class="instructor-btn">-->
-
-                <!--    Start Learning Today-->
-
-                <!--</a>-->
-
+<!-- ================= 2. OUR STORY & PHILOSOPHY ================= -->
+<section class="abt-story-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="abt-story-img-wrap">
+                    <img src="img/about.png" alt="Practical Training at Finchskills">
+                    <div class="abt-story-badge">
+                        <i class="fa-solid fa-star me-1"></i> 6+ Years Excellence
+                    </div>
+                </div>
             </div>
 
+            <div class="col-lg-6">
+                <div class="abt-section-badge">
+                    <i class="fa-solid fa-compass"></i>
+                    <span>OUR PHILOSOPHY</span>
+                </div>
+                <h2 class="abt-section-title">
+                    Real World Learning That Prepares You For <span class="highlight">Real Industry Careers</span>
+                </h2>
+                <p class="text-muted mb-4" style="line-height: 1.75; font-size: 15px;">
+                    Finchskills Institute was founded with a singular conviction: skills matter far more than paper degrees alone. We observed a significant gap between traditional academic education and the actual operational expectations of airlines, luxury hotels, and international travel enterprises.
+                </p>
+
+                <div class="mb-4">
+                    <div class="abt-feature-check-item">
+                        <div class="abt-check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div>
+                            <strong class="text-dark d-block">Industry-Aligned Practical Curriculum:</strong>
+                            <span class="text-muted small">Curriculum developed in consultation with airline captains, ground operations heads, and luxury hospitality managers.</span>
+                        </div>
+                    </div>
+                    <div class="abt-feature-check-item">
+                        <div class="abt-check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div>
+                            <strong class="text-dark d-block">Hands-on GDS &amp; Ticketing Systems:</strong>
+                            <span class="text-muted small">Real computerized reservation training on Amadeus and Galileo software used by global travel agencies.</span>
+                        </div>
+                    </div>
+                    <div class="abt-feature-check-item">
+                        <div class="abt-check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div>
+                            <strong class="text-dark d-block">Personality Grooming &amp; Fluency:</strong>
+                            <span class="text-muted small">Extensive grooming sessions, corporate etiquette, body language mastering, and spoken English communication.</span>
+                        </div>
+                    </div>
+                    <div class="abt-feature-check-item">
+                        <div class="abt-check-icon"><i class="fa-solid fa-check"></i></div>
+                        <div>
+                            <strong class="text-dark d-block">Dedicated Career Placement Cell:</strong>
+                            <span class="text-muted small">Continuous interview drives, resume preparation, mock airline interviews, and verified recruiter placement opportunities.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <?php if (!empty($isStudentLoggedIn)): ?>
+                        <a href="form-submission.php" class="why-primary-btn">
+                            <i class="fa-solid fa-file-signature me-1"></i>
+                            <span>Admission</span>
+                            <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+                    <?php else: ?>
+                        <a href="register.php" class="why-primary-btn">
+                            <i class="fa-solid fa-user-pen me-1"></i>
+                            <span>Registration</span>
+                            <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+                    <?php endif; ?>
+                    <a href="courses.php" class="why-outline-btn">
+                        <span>Explore Courses</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 3. CORE VALUE PILLARS ================= -->
+<section class="abt-values-section">
+    <div class="container">
+        <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+            <div class="abt-section-badge">
+                <i class="fa-solid fa-bullseye"></i>
+                <span>PURPOSE &amp; VALUES</span>
+            </div>
+            <h2 class="abt-section-title">
+                Our Commitment to Every <span class="highlight">Student's Success</span>
+            </h2>
+            <p class="abt-section-subtitle mx-auto">
+                We are committed to delivering honest mentorship, career-aligned curriculum, and supportive guidance every single step of your professional journey.
+            </p>
         </div>
 
-    </section>
+        <div class="row g-4">
+            <!-- CARD 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="abt-card">
+                    <div class="abt-card-icon">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h4>Our Vision</h4>
+                    <p>
+                        To become India's foremost center of excellence for service-industry career training &mdash; empowering talented individuals with international-standard professional competencies, self-confidence, and guaranteed job readiness.
+                    </p>
+                </div>
+            </div>
 
-<!-- FOOTER  -->
-<?php include "footer.php" ?>
+            <!-- CARD 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="abt-card">
+                    <div class="abt-card-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h4>Our Mission</h4>
+                    <p>
+                        To deliver accessible, practical, and results-driven training that bridges the gap between ambition and employment. We mentor every candidate with personalized attention, modern labs, and real industry exposure.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-lg-4 col-md-12">
+                <div class="abt-card">
+                    <div class="abt-card-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4>Our Core Values</h4>
+                    <p>
+                        We stand firmly for integrity, practical learning, and transparent guidance. We treat every student's career aspirations as our own personal responsibility, providing genuine placement support and lifetime value.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 4. NUMBERS COUNTER STRIP ================= -->
+<section class="abt-counter-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-6 col-lg-3">
+                <div class="abt-stat-box">
+                    <div class="abt-stat-number">1000<span>+</span></div>
+                    <p class="abt-stat-label">Students Trained</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="abt-stat-box">
+                    <div class="abt-stat-number">6<span>+</span></div>
+                    <p class="abt-stat-label">Years of Excellence</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="abt-stat-box">
+                    <div class="abt-stat-number">15<span>+</span></div>
+                    <p class="abt-stat-label">Career Programs</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="abt-stat-box">
+                    <div class="abt-stat-number">98<span>%</span></div>
+                    <p class="abt-stat-label">Placement Success Rate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 5. HOW LEARNING WORKS (OUR ADMISSION & LEARNING FLOW) ================= -->
+<section class="abt-process-section">
+    <div class="container">
+        <div class="text-center mx-auto mb-5" style="max-width: 700px;">
+            <div class="abt-section-badge">
+                <i class="fa-solid fa-route"></i>
+                <span>STEP-BY-STEP JOURNEY</span>
+            </div>
+            <h2 class="abt-section-title">
+                How Learning Works at <span class="highlight">Finchskills</span>
+            </h2>
+            <p class="abt-section-subtitle mx-auto">
+                A structured, outcome-based pathway designed to take you from initial registration to verified job-ready career placement.
+            </p>
+        </div>
+
+        <div class="row g-4 abt-process-grid">
+            <!-- STEP 1: REGISTRATION -->
+            <div class="col-lg-3 col-md-6 abt-step-col">
+                <div class="abt-step-card">
+                    <div class="abt-step-header">
+                        <span class="abt-step-badge">STEP 01</span>
+                        <div class="abt-step-icon">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </div>
+                    </div>
+                    <h4>Registration</h4>
+                    <p>
+                        Create your student account using your mobile number and OTP verification. Access your student dashboard and explore industry-aligned programs.
+                    </p>
+                    <div class="abt-step-action">
+                        <?php if (!empty($isStudentLoggedIn)): ?>
+                            <span class="abt-step-subnote"><i class="fa-solid fa-circle-check me-1"></i>Registered</span>
+                            <a href="student-profile.php" class="abt-step-link">My Profile <i class="fa-solid fa-arrow-right"></i></a>
+                        <?php else: ?>
+                            <span class="text-muted small">New Student</span>
+                            <a href="register.php" class="abt-step-link">Registration <i class="fa-solid fa-arrow-right"></i></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: SEAT RESERVATION -->
+            <div class="col-lg-3 col-md-6 abt-step-col">
+                <div class="abt-step-card">
+                    <div class="abt-step-header">
+                        <span class="abt-step-badge">STEP 02</span>
+                        <div class="abt-step-icon">
+                            <i class="fa-solid fa-chair"></i>
+                        </div>
+                    </div>
+                    <h4>Seat Reservation</h4>
+                    <p>
+                        Choose your target batch and secure your seat online. Your seat reservation fee is <strong>100% adjusted</strong> directly into your total course fee.
+                    </p>
+                    <div class="abt-step-action">
+                        <span class="abt-step-subnote"><i class="fa-solid fa-shield-check me-1"></i>100% Adjusted</span>
+                        <?php if (!empty($isStudentLoggedIn)): ?>
+                            <a href="seat-reservation.php" class="abt-step-link">Book Your Seat <i class="fa-solid fa-arrow-right"></i></a>
+                        <?php else: ?>
+                            <a href="register.php?redirect=seat-reservation.php" class="abt-step-link">Book Your Seat <i class="fa-solid fa-arrow-right"></i></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: ADMISSION -->
+            <div class="col-lg-3 col-md-6 abt-step-col">
+                <div class="abt-step-card">
+                    <div class="abt-step-header">
+                        <span class="abt-step-badge">STEP 03</span>
+                        <div class="abt-step-icon">
+                            <i class="fa-solid fa-file-signature"></i>
+                        </div>
+                    </div>
+                    <h4>Admission</h4>
+                    <p>
+                        Complete the official online admission form, upload your educational documents (10th/12th marksheet &amp; ID), and confirm your batch schedule.
+                    </p>
+                    <div class="abt-step-action">
+                        <span class="text-muted small">Official Enrollment</span>
+                        <?php if (!empty($isStudentLoggedIn)): ?>
+                            <a href="form-submission.php" class="abt-step-link">Admission Form <i class="fa-solid fa-arrow-right"></i></a>
+                        <?php else: ?>
+                            <a href="register.php?redirect=form-submission.php" class="abt-step-link">Admission <i class="fa-solid fa-arrow-right"></i></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: TRAINING & PLACEMENT -->
+            <div class="col-lg-3 col-md-6 abt-step-col">
+                <div class="abt-step-card">
+                    <div class="abt-step-header">
+                        <span class="abt-step-badge">STEP 04</span>
+                        <div class="abt-step-icon">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                    </div>
+                    <h4>Training &amp; Placement</h4>
+                    <p>
+                        Undergo hands-on training with airline GDS systems, personality grooming, mock interviews, and receive 100% placement support for top companies.
+                    </p>
+                    <div class="abt-step-action">
+                        <span class="abt-step-subnote"><i class="fa-solid fa-star me-1"></i>100% Placement</span>
+                        <a href="courses.php" class="abt-step-link">Explore Courses <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 6. RECOGNITION & ACCREDITATION ================= -->
+<section class="abt-recognition-section">
+    <div class="container">
+        <div class="abt-recognition-box">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="feature-icon" style="width: 50px; height: 50px; border-radius: 12px; background: #fff7ed; color: #fe7c03; display: flex; align-items: center; justify-content: center; font-size: 22px;">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h3 class="fw-bold mb-0 text-dark" style="font-size: 24px;">Government Registered &amp; Industry Aligned</h3>
+                            <span class="text-muted small">Standards-Compliant Quality Vocational Education</span>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-0" style="font-size: 15px; line-height: 1.75;">
+                        Finchskills Institute is officially registered under the <strong>Ministry of Micro, Small &amp; Medium Enterprises (Government of India)</strong>. Our programs adhere strictly to global distribution systems (Amadeus &amp; Galileo GDS) and contemporary airline ground handling protocols, ensuring credentials that recruiters across India and abroad respect and value.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <?php if (!empty($isStudentLoggedIn)): ?>
+                        <a href="seat-reservation.php" class="hero-btn hero-btn-register">
+                            <i class="fa-solid fa-chair me-2"></i>
+                            <span>Reserve Your Seat</span>
+                        </a>
+                    <?php else: ?>
+                        <a href="register.php?redirect=seat-reservation.php" class="hero-btn hero-btn-register">
+                            <i class="fa-solid fa-user-pen me-2"></i>
+                            <span>Registration</span>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 7. TESTIMONIALS (MATCHING HOMEPAGE) ================= -->
+<section class="testimonial-section">
+    <div class="container">
+        <div class="testimonial-wrapper">
+            <div class="row align-items-center g-4">
+                <!-- LEFT -->
+                <div class="col-lg-6">
+                    <h2 class="section-title">What Our Learners Say</h2>
+                    <p class="section-subtitle">
+                        Hear from students who transformed their skills and achieved their career goals with Finchskills Institute.
+                    </p>
+                    <div class="user-group">
+                        <div class="avatars">
+                            <img src="img/womens-profile.png" class="testimonial-user active" alt="Priya Sharma" />
+                            <img src="img/mens-profile.png" class="testimonial-user" alt="Rahul Verma" />
+                            <img src="img/womens-profile.png" class="testimonial-user" alt="Sneha Patel" />
+                            <img src="img/mens-profile.png" class="testimonial-user" alt="Ankit Singh" />
+                            <img src="img/womens-profile.png" class="testimonial-user" alt="Ayesha Khan" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="col-lg-6">
+                    <div class="owl-carousel testimonial-carousel owl-theme">
+                        <!-- ITEM 1 -->
+                        <div class="item">
+                            <div class="testimonial-box">
+                                <div class="testimonial-author">
+                                    <img src="img/womens-profile.png" alt="Priya Sharma" />
+                                    <div class="author-content">
+                                        <h4>Priya Sharma</h4>
+                                        <span>Air Hostess</span>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "Finchskills Institute provided an excellent learning experience. The trainers were supportive, the classes were interactive, and the personality development sessions greatly improved my confidence and communication skills."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ITEM 2 -->
+                        <div class="item">
+                            <div class="testimonial-box">
+                                <div class="testimonial-author">
+                                    <img src="img/mens-profile.png" alt="Rahul Verma" />
+                                    <div class="author-content">
+                                        <h4>Rahul Verma</h4>
+                                        <span>Airport Terminal Management</span>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "The course was well-organized and easy to follow. The faculty explained airport operations clearly, and the flexible classes made learning convenient. Finchskills Institute is a great choice for professional skill development."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ITEM 3 -->
+                        <div class="item">
+                            <div class="testimonial-box">
+                                <div class="testimonial-author">
+                                    <img src="img/womens-profile.png" alt="Sneha Patel" />
+                                    <div class="author-content">
+                                        <h4>Sneha Patel</h4>
+                                        <span>Travel &amp; Tourism</span>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "I had a wonderful experience learning with Finchskills Institute. The study material was informative, the trainers were knowledgeable, and the sessions helped me build confidence and industry knowledge. Highly recommended!"
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ITEM 4 -->
+                        <div class="item">
+                            <div class="testimonial-box">
+                                <div class="testimonial-author">
+                                    <img src="img/mens-profile.png" alt="Ankit Singh" />
+                                    <div class="author-content">
+                                        <h4>Ankit Singh</h4>
+                                        <span>Hotel Management</span>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "Finchskills Institute made learning simple and engaging. The faculty was experienced, the course content was practical, and every session helped me improve my hospitality skills. It was a valuable learning experience."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ITEM 5 -->
+                        <div class="item">
+                            <div class="testimonial-box">
+                                <div class="testimonial-author">
+                                    <img src="img/womens-profile.png" alt="Ayesha Khan" />
+                                    <div class="author-content">
+                                        <h4>Ayesha Khan</h4>
+                                        <span>Customer Service</span>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "The course at Finchskills Institute exceeded my expectations. The trainers explained every topic clearly, and the practical examples made learning easy. I gained valuable skills and felt more confident in my professional communication."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 8. CTA PRE-FOOTER BANNER ================= -->
+<section class="instructor-section">
+    <div class="container">
+        <div class="instructor-content">
+            <h2 class="instructor-title">
+                Build Your Skills.<br>
+                Shape Your Future.
+            </h2>
+            <p class="instructor-subtitle">
+                Join expert-led courses, gain practical knowledge, and achieve your career goals with confidence.
+            </p>
+            <?php if (!empty($isStudentLoggedIn)): ?>
+                <a href="form-submission.php" class="instructor-btn">
+                    <i class="fa-solid fa-file-signature me-2"></i>
+                    <span>Admission</span>
+                    <i class="fa-solid fa-arrow-right ms-2 instructor-btn-arrow"></i>
+                </a>
+            <?php else: ?>
+                <a href="register.php" class="instructor-btn">
+                    <i class="fa-solid fa-user-pen me-2"></i>
+                    <span>Registration</span>
+                    <i class="fa-solid fa-arrow-right ms-2 instructor-btn-arrow"></i>
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<?php include "footer.php"; ?>
 
 <script>
-  const users = document.querySelectorAll(".testimonial-user");
+$(document).ready(function () {
+    const users = document.querySelectorAll(".testimonial-user");
+    const owl = $(".testimonial-carousel");
 
-  const testimonialText = document.getElementById("testimonialText");
-  const testimonialName = document.getElementById("testimonialName");
-  const testimonialRole = document.getElementById("testimonialRole");
-  const testimonialImage = document.getElementById("testimonialImage");
-
-  users.forEach((user) => {
-    user.addEventListener("click", () => {
-      // REMOVE ACTIVE
-
-      users.forEach((item) => item.classList.remove("active"));
-
-      // ADD ACTIVE
-
-      user.classList.add("active");
-
-      // CHANGE CONTENT
-
-      testimonialText.innerText = user.getAttribute("data-text");
-
-      testimonialName.innerText = user.getAttribute("data-name");
-
-      testimonialRole.innerText = user.getAttribute("data-role");
-
-      testimonialImage.src = user.src;
+    users.forEach((user, index) => {
+        user.addEventListener("click", () => {
+            users.forEach(item => item.classList.remove("active"));
+            user.classList.add("active");
+            owl.trigger('to.owl.carousel', [index, 600]);
+        });
     });
-  });
-</script>
 
-
-<!-- Owl Carousel Initialization -->
-<script>
-  $(document).ready(function() {
-    $(".testimonial-carousel").owlCarousel({
-      items: 1,
-      loop: true,
-      autoplay: true,
-      autoplayTimeout: 5000,
-      autoplayHoverPause: true,
-      smartSpeed: 800,
-      dots: true,
-      nav: false,
+    owl.on('changed.owl.carousel', function (event) {
+        const index = event.item.index - event.relatedTarget._clones.length / 2;
+        const realIndex = index % users.length;
+        users.forEach(item => item.classList.remove("active"));
+        if (users[realIndex]) {
+            users[realIndex].classList.add("active");
+        }
     });
-  });
+
+    owl.owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        smartSpeed: 800,
+        dots: true,
+        nav: false
+    });
+});
 </script>
-
-
-

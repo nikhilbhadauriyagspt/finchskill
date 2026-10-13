@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Error Alert -->
     <?php if (!empty($error)): ?>
-        <div class="p-2.5 text-xs bg-rose-50 text-rose-700 border border-rose-200 rounded-md flex items-center gap-2">
+        <div class="p-2 text-xs bg-rose-50 text-rose-700 border border-rose-200 rounded-md flex items-center gap-2">
             <i class="fa-solid fa-circle-exclamation text-rose-500 shrink-0"></i>
             <span><?= htmlspecialchars($error) ?></span>
         </div>
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
 
-        <button type="submit" class="w-full py-2.5 px-4 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors flex items-center justify-center gap-1.5">
+        <button type="submit" class="w-full py-2 px-4 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors flex items-center justify-center gap-1">
             <i class="fa-solid fa-right-to-bracket text-[11px]"></i>
             <span>Sign In to Dashboard</span>
         </button>

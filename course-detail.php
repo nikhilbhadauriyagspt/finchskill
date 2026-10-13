@@ -16,6 +16,9 @@ if (!empty($slug) || $id > 0) {
     $course = $stmt->fetch();
 }
 
+// Fetch Seat Booking Fee from site_settings (set by Admin)
+$seat_booking_fee = (float)getSetting('seat_booking_fee', '999');
+
 // Quick Inquiry Form Submission
 $inquiry_success = false;
 $inquiry_error = '';
@@ -53,6 +56,21 @@ if ($course) {
                                LIMIT 3");
     $rel_stmt->execute([$course['category_id'], $course['id']]);
     $related_courses = $rel_stmt->fetchAll();
+
+    // If fewer than 3 courses in same category, supplement with top other active courses
+    if (count($related_courses) < 3) {
+        $needed = 3 - count($related_courses);
+        $exclude_ids = array_merge([$course['id']], !empty($related_courses) ? array_column($related_courses, 'id') : []);
+        $placeholders = implode(',', array_fill(0, count($exclude_ids), '?'));
+        $extra_stmt = $pdo->prepare("SELECT cr.*, cat.name as category_name, cat.icon as category_icon 
+                                     FROM courses cr 
+                                     JOIN course_categories cat ON cr.category_id = cat.id 
+                                     WHERE cr.id NOT IN ($placeholders) AND cr.status = 'active' 
+                                     ORDER BY cr.is_featured DESC, cr.id ASC 
+                                     LIMIT $needed");
+        $extra_stmt->execute($exclude_ids);
+        $related_courses = array_merge($related_courses, $extra_stmt->fetchAll());
+    }
 }
 
 $page_title = $course ? htmlspecialchars($course['title']) . " - Finchskills Institute" : "Course Not Found - Finchskills Institute";
@@ -121,6 +139,27 @@ include "header.php";
                         <?= htmlspecialchars($course['short_desc'] ?: 'Comprehensive, industry-aligned professional training program designed to prepare you for high-growth careers with hands-on practical skills and placement support.') ?>
                     </p>
 
+                    <!-- HERO ACTION BUTTONS -->
+                    <?php
+                    $hero_seat_url = !empty($isStudentLoggedIn)
+                        ? ("seat-reservation?course_id=" . $course['id'])
+                        : ("register?redirect=" . urlencode("seat-reservation?course_id=" . $course['id']));
+                    $hero_apply_url = !empty($isStudentLoggedIn)
+                        ? ("form-submission?course=" . urlencode($course['title']))
+                        : ("register?redirect=" . urlencode("form-submission?course=" . urlencode($course['title'])));
+                    ?>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
+                        <a href="<?= $hero_seat_url ?>" class="btn px-4 py-2 fw-bold text-white shadow-sm d-inline-flex align-items-center gap-2" style="background: #fe7c03; border-radius: 8px; font-size: 14px;">
+                            <i class="fa-solid fa-chair"></i>
+                            <span>Book Your Seat</span>
+                            <span class="badge bg-white text-dark ms-1" style="font-size: 10.5px;">100% Adjusted</span>
+                        </a>
+                        <a href="<?= $hero_apply_url ?>" class="btn px-3 py-2 fw-semibold d-inline-flex align-items-center gap-2 text-dark border-secondary-subtle bg-white" style="border-radius: 8px; font-size: 14px;">
+                            <i class="fa-solid fa-file-signature text-primary"></i>
+                            <span>Complete Admission Form</span>
+                        </a>
+                    </div>
+
                     <!-- METRIC HORIZONTAL QUICK SPECS (5 CLEAN CARDS) -->
                     <div class="cd-metric-strip">
                         <div class="cd-metric-item">
@@ -135,8 +174,8 @@ include "header.php";
                             <div class="cd-metric-item cd-metric-fee">
                                 <div class="cd-metric-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
                                 <div>
-                                    <span class="cd-metric-label">Course Fee</span>
-                                    <div class="cd-metric-val text-success"><?= htmlspecialchars($course['fee']) ?></div>
+                                    <span class="cd-metric-label">Easy</span>
+                                    <div class="cd-metric-val ">Installments</div>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -156,6 +195,16 @@ include "header.php";
                                 <div class="cd-metric-val"><?= htmlspecialchars($course['study_mode'] ?: 'Classroom & Labs') ?></div>
                             </div>
                         </div>
+
+                        <?php if (!empty($course['modules'])): ?>
+                            <div class="cd-metric-item">
+                                <div class="cd-metric-icon"><i class="fa-solid fa-book-open"></i></div>
+                                <div>
+                                    <span class="cd-metric-label">Curriculum</span>
+                                    <div class="cd-metric-val"><?= htmlspecialchars($course['modules']) ?></div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
 
                         <div class="cd-metric-item">
                             <div class="cd-metric-icon"><i class="fa-solid fa-briefcase"></i></div>
@@ -249,7 +298,7 @@ include "header.php";
 
                     <!-- 2. CURRICULUM MODULES -->
                     <?php if (!empty($course['what_you_learn'])): ?>
-                        <?php 
+                        <?php
                         $modules = array_filter(array_map('trim', explode("\n", $course['what_you_learn'])));
                         ?>
                         <div class="cd-sec-card" id="curriculum">
@@ -260,7 +309,7 @@ include "header.php";
                             </p>
 
                             <div class="accordion cd-module-accordion" id="curriculumAccordion">
-                                <?php foreach ($modules as $index => $mod): 
+                                <?php foreach ($modules as $index => $mod):
                                     $mod_id = "mod_" . ($index + 1);
                                     $is_first = ($index === 0);
                                 ?>
@@ -291,7 +340,7 @@ include "header.php";
 
                     <!-- 3. TRAINING METHODOLOGY -->
                     <?php if (!empty($course['how_we_teach'])): ?>
-                        <?php 
+                        <?php
                         $teach_methods = array_filter(array_map('trim', explode("\n", $course['how_we_teach'])));
                         ?>
                         <div class="cd-sec-card" id="methodology">
@@ -319,7 +368,7 @@ include "header.php";
 
                     <!-- 4. CAREER ROLES & JOB OPPORTUNITIES -->
                     <?php if (!empty($course['career_roles'])): ?>
-                        <?php 
+                        <?php
                         $roles = array_filter(array_map('trim', explode(',', $course['career_roles'])));
                         ?>
                         <div class="cd-sec-card" id="careers">
@@ -360,7 +409,7 @@ include "header.php";
                                 <div class="cd-info-card">
                                     <h6><i class="fa-solid fa-user-check text-primary"></i> Eligibility Requirements</h6>
                                     <p class="fw-semibold text-dark mb-2"><?= htmlspecialchars($course['eligibility'] ?: '10+2 / Any Graduate') ?></p>
-                                    <ul class="list-unstyled small text-muted mt-2 mb-0 d-flex flex-column gap-1.5">
+                                    <ul class="list-unstyled small text-muted mt-2 mb-0 d-flex flex-column gap-1">
                                         <li><i class="fa-solid fa-check text-success me-1.5"></i> 10th / 12th pass or graduation from any recognized board/university</li>
                                         <li><i class="fa-solid fa-check text-success me-1.5"></i> Basic verbal communication skills &amp; professional grooming willingness</li>
                                         <li><i class="fa-solid fa-check text-success me-1.5"></i> Minimum age 17+ years</li>
@@ -371,7 +420,7 @@ include "header.php";
                                 <div class="cd-info-card">
                                     <h6><i class="fa-solid fa-award text-warning"></i> Recognized Certification</h6>
                                     <p class="fw-semibold text-dark mb-2"><?= htmlspecialchars($course['certification'] ?: 'Industry Recognized Certification') ?></p>
-                                    <ul class="list-unstyled small text-muted mt-2 mb-0 d-flex flex-column gap-1.5">
+                                    <ul class="list-unstyled small text-muted mt-2 mb-0 d-flex flex-column gap-1">
                                         <li><i class="fa-solid fa-check text-success me-1.5"></i> Industry-recognized verifiable certification</li>
                                         <li><i class="fa-solid fa-check text-success me-1.5"></i> Validated credentials for domestic &amp; global recruiters</li>
                                         <li><i class="fa-solid fa-check text-success me-1.5"></i> Includes lifetime placement assistance registration</li>
@@ -390,12 +439,12 @@ include "header.php";
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="faqH1">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqC1" aria-expanded="false" aria-controls="faqC1">
-                                        What is the fee structure and can I pay in easy installments?
+                                        What is the admission and enrollment process?
                                     </button>
                                 </h2>
                                 <div id="faqC1" class="accordion-collapse collapse" aria-labelledby="faqH1" data-bs-parent="#courseFaqAccordion">
                                     <div class="accordion-body">
-                                        <?= !empty($course['fee']) ? 'The total course fee is <strong>' . htmlspecialchars($course['fee']) . '</strong>. ' : '' ?>Yes, we offer flexible, interest-free monthly installment options so you can manage your course fees comfortably. Contact our counselor for installment breakdown.
+                                        You can start by booking your seat or submitting the online admission form. Our admissions team will verify your eligibility, help you complete documentation, and assist you with batch onboarding.
                                     </div>
                                 </div>
                             </div>
@@ -408,7 +457,7 @@ include "header.php";
                                 </h2>
                                 <div id="faqC2" class="accordion-collapse collapse" aria-labelledby="faqH2" data-bs-parent="#courseFaqAccordion">
                                     <div class="accordion-body">
-                                        Candidates who have completed 10th, 12th, or graduation in any stream with basic communication skills are eligible. No prior industry experience is required.
+                                        Students who have completed 10th, 12th, or graduation in any stream with basic communication skills are eligible. No prior industry experience is required.
                                     </div>
                                 </div>
                             </div>
@@ -476,8 +525,7 @@ include "header.php";
                                 <!-- PROMINENT FEE BOX -->
                                 <div class="cd-fee-box">
                                     <div class="d-flex align-items-baseline justify-content-between mb-1">
-                                        <span class="cd-fee-label">Total Program Fee</span>
-                                        <span class="cd-fee-amount"><?= !empty($course['fee']) ? htmlspecialchars($course['fee']) : 'Flexible Fee Plan' ?></span>
+                                        <span class="cd-fee-label">Flexible Payment Plans</span>
                                     </div>
                                     <div class="cd-fee-sub">
                                         <i class="fa-solid fa-circle-check text-success me-1"></i>
@@ -485,23 +533,31 @@ include "header.php";
                                     </div>
                                 </div>
 
-                                <!-- PRIMARY ACTION CTA -->
-                                <?php if (!empty($isStudentLoggedIn)): ?>
-                                    <a href="form-submission.php?course=<?= urlencode($course['title']) ?>" class="cd-btn-primary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                                        <i class="fa-solid fa-file-signature me-1"></i>
-                                        <span>Apply Online</span>
+                                <!-- ACTION CTAS -->
+                                <div class="d-grid gap-2 mb-2">
+                                    <!-- 1. BOOK YOUR SEAT (100% ADJUSTABLE) -->
+                                    <a href="<?= $hero_seat_url ?>" class="cd-btn-primary" style="background: linear-gradient(135deg, #fe7c03 0%, #d96800 100%); border: none;">
+                                        <i class="fa-solid fa-chair me-1"></i>
+                                        <span>Book Your Seat</span>
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </a>
-                                <?php else: ?>
-                                    <a href="register.php?redirect=form-submission.php?course=<?= urlencode($course['title']) ?>" class="cd-btn-primary">
-                                        <i class="fa-solid fa-user-pen me-1"></i>
-                                        <span>Register Yourself</span>
-                                        <i class="fa-solid fa-arrow-right"></i>
+                                    <div class="text-center" style="font-size: 11.5px; color: #15803d; font-weight: 600; margin-top: -2px;">
+                                        <i class="fa-solid fa-circle-check me-1"></i> Seat booking amount is 100% adjusted into course fee
+                                    </div>
+
+                                    <!-- 2. DIRECT ADMISSION FORM -->
+                                    <a href="<?= $hero_apply_url ?>" class="btn btn-outline-dark fw-semibold py-2 d-flex align-items-center justify-content-center gap-2" style="border-radius: 8px; font-size: 13.5px;">
+                                        <i class="fa-solid fa-file-signature text-primary"></i>
+                                        <span>Complete Admission Form</span>
                                     </a>
-                                <?php endif; ?>
+                                </div>
 
                                 <!-- SECONDARY ACTION: WHATSAPP COUNSELOR -->
-                                <a href="https://wa.me/919650386711?text=<?= urlencode("Hello Finchskills, I would like to inquire about the " . $course['title'] . " course fee and batch schedule.") ?>" target="_blank" rel="noopener" class="cd-btn-whatsapp">
+                                <?php
+                                $cd_wa = getSetting('whatsapp_number', getSetting('phone_1', '919650386711'));
+                                $cd_wa_clean = preg_replace('/[^0-9]/', '', $cd_wa);
+                                ?>
+                                <a href="https://wa.me/<?= $cd_wa_clean ?>?text=<?= urlencode("Hello Finchskills, I would like to inquire about the " . $course['title'] . " course fee and batch schedule.") ?>" target="_blank" rel="noopener" class="cd-btn-whatsapp">
                                     <i class="fa-brands fa-whatsapp fs-5"></i>
                                     <span>Chat on WhatsApp</span>
                                 </a>
@@ -514,8 +570,8 @@ include "header.php";
                                     </li>
                                     <?php if (!empty($course['fee'])): ?>
                                         <li class="cd-fact-row">
-                                            <span class="cd-fact-label"><i class="fa-solid fa-indian-rupee-sign"></i> Course Fee</span>
-                                            <span class="cd-fact-val text-success"><?= htmlspecialchars($course['fee']) ?></span>
+                                            <span class="cd-fact-label"><i class="fa-solid fa-indian-rupee-sign"></i> Easy</span>
+                                            <span class="cd-fact-val text-success">Installments</span>
                                         </li>
                                     <?php endif; ?>
                                     <li class="cd-fact-row">
@@ -524,8 +580,14 @@ include "header.php";
                                     </li>
                                     <li class="cd-fact-row">
                                         <span class="cd-fact-label"><i class="fa-solid fa-laptop-file"></i> Study Mode</span>
-                                        <span class="cd-fact-val"><?= htmlspecialchars($course['study_mode'] ?: 'Classroom & Labs') ?></span>
+                                        <span class="cd-fact-val"><?= htmlspecialchars($course['study_mode'] ?: 'Offline') ?></span>
                                     </li>
+                                    <?php if (!empty($course['modules'])): ?>
+                                        <li class="cd-fact-row">
+                                            <span class="cd-fact-label"><i class="fa-solid fa-book-open"></i> Course Modules</span>
+                                            <span class="cd-fact-val fw-semibold text-dark"><?= htmlspecialchars($course['modules']) ?></span>
+                                        </li>
+                                    <?php endif; ?>
                                     <li class="cd-fact-row">
                                         <span class="cd-fact-label"><i class="fa-solid fa-certificate"></i> Certification</span>
                                         <span class="cd-fact-val">Recognized</span>
@@ -542,7 +604,7 @@ include "header.php";
                                     <p>Get instant guidance on batch dates, eligibility, and fee discount plans.</p>
 
                                     <?php if ($inquiry_success): ?>
-                                        <div class="alert alert-success py-2 px-2.5 small mb-0 rounded-2" role="alert">
+                                        <div class="alert alert-success py-2 px-2 small mb-0 rounded-2" role="alert">
                                             <i class="fa-solid fa-circle-check me-1"></i> Request received! Our counselor will call you shortly.
                                         </div>
                                     <?php else: ?>
@@ -564,8 +626,9 @@ include "header.php";
                                     <?php endif; ?>
                                 </div>
 
+                                <?php $cd_phone = getSetting('phone_1', '+919650386711'); ?>
                                 <div class="cd-helpline-note">
-                                    Direct Admissions Helpline: <a href="tel:+919650386711">+91 96503 86711</a>
+                                    Direct Admissions Helpline: <a href="tel:<?= htmlspecialchars($cd_phone) ?>"><?= htmlspecialchars($cd_phone) ?></a>
                                 </div>
 
                             </div>
@@ -615,10 +678,10 @@ include "header.php";
                                 <div class="course-content">
                                     <h3><?= htmlspecialchars($rc['title']) ?></h3>
                                     <p><?= htmlspecialchars($rc['short_desc']) ?></p>
-                                    
+
                                     <?php if (!empty($rc['fee'])): ?>
                                         <div class="course-meta mb-3">
-                                            <span class="cm-item"><i class="fa-solid fa-indian-rupee-sign"></i> Fee: <strong><?= htmlspecialchars($rc['fee']) ?></strong></span>
+                                            <span class="cm-item"><i class="fa-solid fa-indian-rupee-sign"></i> Easy <strong>Installments</strong></span>
                                             <span class="cm-item"><i class="fa-solid fa-briefcase"></i> 100% Placement</span>
                                         </div>
                                     <?php endif; ?>
@@ -643,80 +706,86 @@ include "header.php";
 
 <!-- Dynamic ScrollSpy script for sticky sub-nav -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.cd-nav-link');
-    const sections = [];
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.cd-nav-link');
+        const sections = [];
 
-    navLinks.forEach(link => {
-        const targetId = link.getAttribute('href');
-        if (targetId && targetId.startsWith('#')) {
-            const el = document.querySelector(targetId);
-            if (el) {
-                sections.push({ id: targetId, element: el, link: link });
-            }
-        }
-    });
-
-    function updateActiveTab() {
-        // Adjust for sticky header + sub-nav height (~150px)
-        const scrollPosition = window.scrollY + 160;
-
-        let activeSection = null;
-
-        for (let i = 0; i < sections.length; i++) {
-            const sec = sections[i];
-            const top = sec.element.offsetTop;
-            const height = sec.element.offsetHeight;
-
-            if (scrollPosition >= top && scrollPosition < top + height) {
-                activeSection = sec;
-                break;
-            } else if (scrollPosition >= top) {
-                activeSection = sec;
-            }
-        }
-
-        if (activeSection) {
-            navLinks.forEach(l => l.classList.remove('active'));
-            activeSection.link.classList.add('active');
-
-            // Scroll the horizontal nav strip smoothly if active tab goes out of view (on mobile)
-            const navContainer = document.querySelector('.cd-nav-links');
-            if (navContainer) {
-                const linkLeft = activeSection.link.offsetLeft;
-                const linkWidth = activeSection.link.offsetWidth;
-                const containerWidth = navContainer.offsetWidth;
-                if (linkLeft < navContainer.scrollLeft || (linkLeft + linkWidth) > (navContainer.scrollLeft + containerWidth)) {
-                    navContainer.scrollTo({
-                        left: linkLeft - (containerWidth / 2) + (linkWidth / 2),
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        }
-    }
-
-    window.addEventListener('scroll', updateActiveTab, { passive: true });
-    updateActiveTab(); // Initial check
-
-    // Smooth click handler
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
+        navLinks.forEach(link => {
+            const targetId = link.getAttribute('href');
             if (targetId && targetId.startsWith('#')) {
-                const targetEl = document.querySelector(targetId);
-                if (targetEl) {
-                    e.preventDefault();
-                    const targetTop = targetEl.offsetTop - 140;
-                    window.scrollTo({
-                        top: targetTop,
-                        behavior: 'smooth'
+                const el = document.querySelector(targetId);
+                if (el) {
+                    sections.push({
+                        id: targetId,
+                        element: el,
+                        link: link
                     });
                 }
             }
         });
+
+        function updateActiveTab() {
+            // Adjust for sticky header + sub-nav height (~150px)
+            const scrollPosition = window.scrollY + 160;
+
+            let activeSection = null;
+
+            for (let i = 0; i < sections.length; i++) {
+                const sec = sections[i];
+                const top = sec.element.offsetTop;
+                const height = sec.element.offsetHeight;
+
+                if (scrollPosition >= top && scrollPosition < top + height) {
+                    activeSection = sec;
+                    break;
+                } else if (scrollPosition >= top) {
+                    activeSection = sec;
+                }
+            }
+
+            if (activeSection) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                activeSection.link.classList.add('active');
+
+                // Scroll the horizontal nav strip smoothly if active tab goes out of view (on mobile)
+                const navContainer = document.querySelector('.cd-nav-links');
+                if (navContainer) {
+                    const linkLeft = activeSection.link.offsetLeft;
+                    const linkWidth = activeSection.link.offsetWidth;
+                    const containerWidth = navContainer.offsetWidth;
+                    if (linkLeft < navContainer.scrollLeft || (linkLeft + linkWidth) > (navContainer.scrollLeft + containerWidth)) {
+                        navContainer.scrollTo({
+                            left: linkLeft - (containerWidth / 2) + (linkWidth / 2),
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('scroll', updateActiveTab, {
+            passive: true
+        });
+        updateActiveTab(); // Initial check
+
+        // Smooth click handler
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const targetTop = targetEl.offsetTop - 140;
+                        window.scrollTo({
+                            top: targetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
     });
-});
 </script>
 
 <?php include "footer.php"; ?>

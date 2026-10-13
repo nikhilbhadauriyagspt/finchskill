@@ -73,7 +73,7 @@ $settings = getSiteSettings($pdo);
             <p class="text-xs text-slate-400 mt-0.5">Manage portal logos, contact phone numbers, support emails, location, and social media handles</p>
         </div>
         <div class="flex items-center gap-2">
-            <a href="smtp-settings.php" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded-md transition-colors flex items-center gap-1.5 no-underline">
+            <a href="smtp-settings.php" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded-md transition-colors flex items-center gap-1 no-underline">
                 <i class="fa-solid fa-paper-plane text-slate-400"></i>
                 <span>Email &amp; SMTP</span>
             </a>
@@ -109,7 +109,7 @@ $settings = getSiteSettings($pdo);
                     <div class="p-3 border border-slate-200 rounded-md bg-slate-50 flex items-center justify-center h-24">
                         <img src="../<?= htmlspecialchars($settings['site_logo'] ?? 'img/logo.png') ?>" alt="Header Logo" class="max-h-12 max-w-full object-contain">
                     </div>
-                    <input type="file" name="site_logo" accept="image/*" class="w-full text-xs file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                    <input type="file" name="site_logo" accept="image/*" class="w-full text-xs file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
                     <span class="text-[10px] text-slate-400 block">Recommended: Transparent PNG</span>
                 </div>
 
@@ -119,7 +119,7 @@ $settings = getSiteSettings($pdo);
                     <div class="p-3 border border-slate-200 rounded-md bg-[#0e1e2e] flex items-center justify-center h-24">
                         <img src="../<?= htmlspecialchars($settings['footer_logo'] ?? $settings['site_logo'] ?? 'img/footer-logo.png') ?>" alt="Footer Logo" class="max-h-12 max-w-full object-contain">
                     </div>
-                    <input type="file" name="footer_logo" accept="image/*" class="w-full text-xs file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                    <input type="file" name="footer_logo" accept="image/*" class="w-full text-xs file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
                     <span class="text-[10px] text-slate-400 block">Recommended: Light version on dark</span>
                 </div>
 
@@ -129,7 +129,7 @@ $settings = getSiteSettings($pdo);
                     <div class="p-3 border border-slate-200 rounded-md bg-slate-50 flex items-center justify-center h-24">
                         <img src="../<?= htmlspecialchars($settings['site_favicon'] ?? 'img/favicon.png') ?>" alt="Favicon" class="w-8 h-8 object-contain">
                     </div>
-                    <input type="file" name="site_favicon" accept="image/*" class="w-full text-xs file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                    <input type="file" name="site_favicon" accept="image/*" class="w-full text-xs file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
                     <span class="text-[10px] text-slate-400 block">Recommended: 32x32 PNG/ICO</span>
                 </div>
             </div>
@@ -199,7 +199,7 @@ $settings = getSiteSettings($pdo);
                     <h3 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider">Social Media Handles</h3>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                     <div class="sm:col-span-2">
                         <label class="font-bold text-slate-700 block mb-1">WhatsApp Contact Number</label>
                         <input type="text" name="whatsapp_number" value="<?= htmlspecialchars($settings['whatsapp_number'] ?? '') ?>" placeholder="919650386711" class="w-full text-xs px-3 py-1.5 border border-slate-200 rounded-md focus:outline-none focus:border-[#fe7c03]">
@@ -260,7 +260,7 @@ $settings = getSiteSettings($pdo);
 
         <!-- SAVE BUTTON -->
         <div class="text-right pt-2">
-            <button type="submit" class="px-5 py-2.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors inline-flex items-center gap-1.5">
+            <button type="submit" class="px-5 py-2 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors inline-flex items-center gap-1">
                 <i class="fa-solid fa-floppy-disk text-[11px]"></i>
                 <span>Save All Site Settings</span>
             </button>

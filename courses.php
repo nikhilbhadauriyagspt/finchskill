@@ -1,8 +1,14 @@
 <?php
 require_once __DIR__ . '/db.php';
 
-// Fetch Categories
-$cat_stmt = $pdo->query("SELECT * FROM course_categories WHERE status = 'active' ORDER BY name ASC");
+// Fetch Categories (only active with courses count)
+$cat_stmt = $pdo->query("SELECT c.*, COUNT(cr.id) as course_count 
+                         FROM course_categories c 
+                         JOIN courses cr ON cr.category_id = c.id 
+                         WHERE c.status = 'active' AND cr.status = 'active' 
+                         GROUP BY c.id 
+                         HAVING course_count > 0 
+                         ORDER BY c.name ASC");
 $all_categories = $cat_stmt->fetchAll();
 
 // Category filter
@@ -16,7 +22,7 @@ if ($cat_filter > 0) {
     $c_query .= " AND cr.category_id = ?";
     $params[] = $cat_filter;
 }
-$c_query .= " ORDER BY cr.is_featured DESC, cr.id DESC";
+$c_query .= " ORDER BY cr.id ASC";
 $stmt = $pdo->prepare($c_query);
 $stmt->execute($params);
 $courses_list = $stmt->fetchAll();
@@ -63,7 +69,7 @@ include "header.php";
                                 <i class="fa-solid fa-laptop-code"></i>
                             </div>
                             <div>
-                                <h6>Online &amp; Lab Projects</h6>
+                                <h6>Online &amp; Offline</h6>
                                 <span>Practical Training</span>
                             </div>
                         </div>
@@ -125,7 +131,7 @@ include "header.php";
             <?php foreach ($all_categories as $c_cat): ?>
                 <a href="courses.php?category=<?= $c_cat['id'] ?>" class="btn btn-sm <?= $cat_filter === (int)$c_cat['id'] ? 'btn-dark' : 'btn-outline-secondary' ?>" style="border-radius: 4px; font-size: 12.5px; font-weight: 500; padding: 5px 12px; display: inline-flex; align-items: center; gap: 6px;">
                     <i class="fa-solid <?= htmlspecialchars($c_cat['icon']) ?> <?= $cat_filter === (int)$c_cat['id'] ? 'text-warning' : 'text-primary' ?>"></i>
-                    <span><?= htmlspecialchars($c_cat['name']) ?></span>
+                    <span><?= htmlspecialchars($c_cat['name']) ?> (<?= $c_cat['course_count'] ?>)</span>
                 </a>
             <?php endforeach; ?>
         </div>
@@ -156,12 +162,17 @@ include "header.php";
                                 <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px; line-height: 1.35;"><?= htmlspecialchars($c['title']) ?></h3>
                                 <p style="font-size: 12.5px; color: #64748b; line-height: 1.55; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"><?= htmlspecialchars($c['short_desc']) ?></p>
 
-                                <div class="course-meta mb-3" style="padding: 8px 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 12px;">
+                                <div class="course-meta mb-3" style="padding: 8px 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 8px; font-size: 12px;">
                                     <?php if (!empty($c['fee'])): ?>
-                                        <span class="text-success fw-bold"><i class="fa-solid fa-indian-rupee-sign"></i> <?= htmlspecialchars($c['fee']) ?></span>
+                                       
                                     <?php endif; ?>
                                     <span class="text-dark"><i class="fa-regular fa-clock text-muted"></i> <?= htmlspecialchars($c['duration']) ?></span>
-                                    <span class="text-primary fw-semibold"><i class="fa-solid fa-briefcase"></i> 100% Placement</span>
+                                    <span class="badge <?= (stripos($c['study_mode'], 'online') !== false) ? 'bg-success text-white' : 'bg-primary text-white' ?>" style="font-weight: 600; font-size: 11px; padding: 3px 7px; border-radius: 3px;">
+                                        <i class="fa-solid <?= (stripos($c['study_mode'], 'online') !== false) ? 'fa-globe' : 'fa-building-columns' ?> me-1"></i><?= htmlspecialchars($c['study_mode']) ?>
+                                    </span>
+                                    <?php if (!empty($c['modules'])): ?>
+                                        <span class="text-secondary fw-semibold" style="font-size: 11px;"><i class="fa-solid fa-book-open text-warning me-1"></i><?= htmlspecialchars($c['modules']) ?></span>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="course-card-footer" style="padding-top: 10px; border-top: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: space-between; gap: 8px;">

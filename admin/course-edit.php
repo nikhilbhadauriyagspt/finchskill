@@ -42,7 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $duration = trim($_POST['duration'] ?? '12 Months');
-    $study_mode = trim($_POST['study_mode'] ?? 'Classroom & Practical Labs');
+    $study_mode = trim($_POST['study_mode'] ?? 'Offline');
+    $modules = trim($_POST['modules'] ?? '6 Modules');
     $fee = trim($_POST['fee'] ?? '');
     $short_desc = trim($_POST['short_desc'] ?? '');
     $full_desc = trim($_POST['full_desc'] ?? '');
@@ -91,12 +92,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (empty($error_msg)) {
             $stmt = $pdo->prepare("UPDATE courses SET 
-                category_id = ?, title = ?, slug = ?, duration = ?, study_mode = ?, fee = ?, image = ?,
+                category_id = ?, title = ?, slug = ?, duration = ?, study_mode = ?, modules = ?, fee = ?, image = ?,
                 short_desc = ?, full_desc = ?, what_you_learn = ?, how_we_teach = ?, 
                 career_roles = ?, eligibility = ?, certification = ?, is_featured = ?, status = ?
                 WHERE id = ?");
             $stmt->execute([
-                $category_id, $title, $slug, $duration, $study_mode, $fee, $image_path,
+                $category_id, $title, $slug, $duration, $study_mode, $modules, $fee, $image_path,
                 $short_desc, $full_desc, $what_you_learn, $how_we_teach,
                 $career_roles, $eligibility, $certification, $is_featured, $status,
                 $course_id
@@ -150,11 +151,11 @@ require_once __DIR__ . '/includes/header.php';
             <p class="text-xs text-slate-400 mt-0.5"><?= htmlspecialchars($course['title']) ?></p>
         </div>
         <div class="flex items-center gap-2">
-            <a href="../course-detail.php?slug=<?= htmlspecialchars($course['slug']) ?>" target="_blank" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-sky-600 rounded-md transition-colors flex items-center gap-1.5 no-underline">
+            <a href="../course-detail.php?slug=<?= htmlspecialchars($course['slug']) ?>" target="_blank" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-sky-600 rounded-md transition-colors flex items-center gap-1 no-underline">
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 <span>Public Page</span>
             </a>
-            <a href="courses.php" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded-md transition-colors flex items-center gap-1.5 no-underline">
+            <a href="courses.php" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded-md transition-colors flex items-center gap-1 no-underline">
                 <i class="fa-solid fa-arrow-left text-slate-400"></i>
                 <span>Back</span>
             </a>
@@ -197,7 +198,7 @@ require_once __DIR__ . '/includes/header.php';
                         <div>
                             <label class="font-bold text-slate-700 block mb-1">URL Slug</label>
                             <div class="flex items-center">
-                                <span class="px-2.5 py-2 bg-slate-50 border border-r-0 border-slate-200 text-slate-400 text-xs rounded-l-md font-mono">/course-detail.php?slug=</span>
+                                <span class="px-2 py-2 bg-slate-50 border border-r-0 border-slate-200 text-slate-400 text-xs rounded-l-md font-mono">/course-detail.php?slug=</span>
                                 <input type="text" name="slug" id="courseSlug" class="flex-1 text-xs px-3 py-2 border border-slate-200 rounded-r-md font-mono focus:outline-none focus:border-[#fe7c03] text-slate-800" value="<?= htmlspecialchars($_POST['slug'] ?? $course['slug']) ?>">
                             </div>
                         </div>
@@ -288,7 +289,7 @@ require_once __DIR__ . '/includes/header.php';
                         </div>
 
                         <div class="pt-3 border-t border-slate-100 space-y-2">
-                            <button type="submit" class="w-full px-4 py-2 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors inline-flex items-center justify-center gap-1.5">
+                            <button type="submit" class="w-full px-4 py-2 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors inline-flex items-center justify-center gap-1">
                                 <i class="fa-solid fa-floppy-disk text-[11px]"></i>
                                 <span>Update Course</span>
                             </button>
@@ -308,7 +309,12 @@ require_once __DIR__ . '/includes/header.php';
 
                     <div class="space-y-2.5 text-xs">
                         <div>
-                            <label class="font-bold text-slate-700 block mb-1">Category <span class="text-rose-500">*</span></label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="font-bold text-slate-700">Category <span class="text-rose-500">*</span></label>
+                                <a href="categories.php" target="_blank" class="text-[11px] font-semibold text-[#fe7c03] hover:text-[#ea6c00] hover:underline flex items-center gap-1">
+                                    <i class="fa-solid fa-plus text-[10px]"></i> Add / Manage
+                                </a>
+                            </div>
                             <select name="category_id" class="w-full text-xs px-3 py-1.5 border border-slate-200 rounded-md focus:outline-none focus:border-[#fe7c03]" required>
                                 <option value="">Select Category</option>
                                 <?php foreach ($categories as $cat): ?>
@@ -326,7 +332,12 @@ require_once __DIR__ . '/includes/header.php';
 
                         <div>
                             <label class="font-bold text-slate-700 block mb-1">Study Mode</label>
-                            <input type="text" name="study_mode" class="w-full text-xs px-3 py-1.5 border border-slate-200 rounded-md focus:outline-none focus:border-[#fe7c03]" value="<?= htmlspecialchars($_POST['study_mode'] ?? $course['study_mode']) ?>">
+                            <input type="text" name="study_mode" class="w-full text-xs px-3 py-1.5 border border-slate-200 rounded-md focus:outline-none focus:border-[#fe7c03]" placeholder="e.g. Offline or Online" value="<?= htmlspecialchars($_POST['study_mode'] ?? $course['study_mode']) ?>">
+                        </div>
+
+                        <div>
+                            <label class="font-bold text-slate-700 block mb-1">Course Modules</label>
+                            <input type="text" name="modules" class="w-full text-xs px-3 py-1.5 border border-slate-200 rounded-md focus:outline-none focus:border-[#fe7c03]" placeholder="e.g. 6 Modules" value="<?= htmlspecialchars($_POST['modules'] ?? ($course['modules'] ?? '6 Modules')) ?>">
                         </div>
 
                         <div>
@@ -370,7 +381,7 @@ require_once __DIR__ . '/includes/header.php';
                             <?php endif; ?>
                         </div>
 
-                        <input type="file" name="course_image" id="courseImageInput" accept="image/*" class="w-full text-xs file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                        <input type="file" name="course_image" id="courseImageInput" accept="image/*" class="w-full text-xs file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
                         <span class="text-[10px] text-slate-400 block text-left">Recommended: 800x520px (JPG, PNG, WEBP)</span>
                     </div>
                 </div>

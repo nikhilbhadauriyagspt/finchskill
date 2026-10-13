@@ -258,6 +258,7 @@
             updateBadge('sidebarAdmissionsBadge', data.counts.admissions || 0);
             updateBadge('sidebarFeesBadge', data.counts.fees || 0);
             updateBadge('sidebarInquiriesBadge', data.counts.inquiries || 0);
+            updateBadge('sidebarStudentsBadge', data.counts.expiring_seats || 0);
 
             // Update Browser Tab Title
             if (totalUnread > 0) {

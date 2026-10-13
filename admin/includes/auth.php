@@ -41,6 +41,10 @@ function getAdminStats($pdo) {
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM courses");
     $stats['total_courses'] = (int)($stmt->fetchColumn() ?? 0);
 
+    // Total Course Categories
+    $stmt = $pdo->query("SELECT COUNT(*) as total FROM course_categories");
+    $stats['total_categories'] = (int)($stmt->fetchColumn() ?? 0);
+
     // Students / Registered Candidates
     $stmt = $pdo->query("SELECT COUNT(*) as total, 
                                 SUM(CASE WHEN seat_status = 'confirmed' THEN 1 ELSE 0 END) as confirmed,

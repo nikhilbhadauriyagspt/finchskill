@@ -169,14 +169,14 @@ include "header.php";
             </div>
 
             <?php if (!empty($error)): ?>
-                <div class="alert alert-danger py-2.5 px-3 small d-flex align-items-center mb-3" role="alert">
+                <div class="alert alert-danger py-2 px-3 small d-flex align-items-center mb-3" role="alert">
                     <i class="fa-solid fa-circle-exclamation me-2 fs-6"></i>
                     <div><?= $error ?></div>
                 </div>
             <?php endif; ?>
 
             <?php if (!empty($success)): ?>
-                <div class="alert alert-success py-2.5 px-3 small d-flex align-items-center mb-3" role="alert">
+                <div class="alert alert-success py-2 px-3 small d-flex align-items-center mb-3" role="alert">
                     <i class="fa-solid fa-circle-check me-2 fs-6"></i>
                     <div><?= htmlspecialchars($success) ?></div>
                 </div>
@@ -211,11 +211,7 @@ include "header.php";
                     <input type="hidden" name="action_reset_password" value="1">
                     <input type="hidden" name="verify_email" value="<?= htmlspecialchars($reset_email) ?>">
 
-                    <?php if (!empty($_SESSION['debug_latest_otp'])): ?>
-                        <div class="alert alert-warning py-1.5 px-2 small mb-3 text-start" style="font-size: 11px;">
-                            <i class="fa-solid fa-code me-1"></i> <strong>Local Testing OTP:</strong> <?= htmlspecialchars($_SESSION['debug_latest_otp']) ?>
-                        </div>
-                    <?php endif; ?>
+
 
                     <div class="mb-3">
                         <label class="login-label">6-Digit Verification Code <span class="text-danger">*</span></label>

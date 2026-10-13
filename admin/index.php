@@ -161,10 +161,10 @@ $paid_cnt = (int)($admin_stats['paid_students'] ?? 0);
                     <p class="text-[11px] text-slate-400">Monthly student enrollments over the last 6 months</p>
                 </div>
                 <div class="flex items-center gap-3 text-xs">
-                    <span class="inline-flex items-center gap-1.5 text-slate-600">
+                    <span class="inline-flex items-center gap-1 text-slate-600">
                         <span class="w-2.5 h-2.5 rounded-sm bg-[#fe7c03]"></span> Students
                     </span>
-                    <span class="inline-flex items-center gap-1.5 text-slate-600">
+                    <span class="inline-flex items-center gap-1 text-slate-600">
                         <span class="w-2.5 h-2.5 rounded-sm bg-sky-500"></span> Admissions
                     </span>
                 </div>
@@ -220,13 +220,13 @@ $paid_cnt = (int)($admin_stats['paid_students'] ?? 0);
             <table class="w-full text-left text-xs">
                 <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider">
                     <tr>
-                        <th class="px-4 py-2.5">Candidate</th>
-                        <th class="px-4 py-2.5">Student ID</th>
-                        <th class="px-4 py-2.5">Phone</th>
-                        <th class="px-4 py-2.5">Aadhaar</th>
-                        <th class="px-4 py-2.5">Seat Status</th>
-                        <th class="px-4 py-2.5">Payment</th>
-                        <th class="px-4 py-2.5">Date</th>
+                        <th class="px-4 py-2">Candidate</th>
+                        <th class="px-4 py-2">Student ID</th>
+                        <th class="px-4 py-2">Phone</th>
+                        <th class="px-4 py-2">Aadhaar</th>
+                        <th class="px-4 py-2">Seat Status</th>
+                        <th class="px-4 py-2">Payment</th>
+                        <th class="px-4 py-2">Date</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -239,28 +239,28 @@ $paid_cnt = (int)($admin_stats['paid_students'] ?? 0);
                     <?php else: ?>
                         <?php foreach ($recent_students as $st): ?>
                             <tr class="hover:bg-slate-50/80 transition-colors">
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2">
                                     <div class="font-semibold text-[#0e1e2e]"><?= htmlspecialchars($st['name']) ?></div>
                                     <div class="text-[11px] text-slate-400"><?= htmlspecialchars($st['email']) ?></div>
                                 </td>
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2">
                                     <span class="px-2 py-0.5 text-[11px] font-mono font-medium rounded bg-slate-100 text-slate-700 border border-slate-200">
                                         <?= htmlspecialchars($st['student_id']) ?>
                                     </span>
                                 </td>
-                                <td class="px-4 py-2.5 text-slate-600 font-medium"><?= htmlspecialchars($st['phone']) ?></td>
-                                <td class="px-4 py-2.5 text-slate-500 font-mono text-[11px]"><?= htmlspecialchars($st['aadhaar']) ?></td>
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2 text-slate-600 font-medium"><?= htmlspecialchars($st['phone']) ?></td>
+                                <td class="px-4 py-2 text-slate-500 font-mono text-[11px]"><?= htmlspecialchars($st['aadhaar']) ?></td>
+                                <td class="px-4 py-2">
                                     <span class="px-2 py-0.5 text-[10px] font-semibold rounded <?= $st['seat_status'] === 'Confirmed' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200' ?>">
                                         <?= htmlspecialchars($st['seat_status']) ?>
                                     </span>
                                 </td>
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2">
                                     <span class="px-2 py-0.5 text-[10px] font-semibold rounded <?= $st['payment_status'] === 'Paid' ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-600 border border-slate-200' ?>">
                                         <?= htmlspecialchars($st['payment_status']) ?>
                                     </span>
                                 </td>
-                                <td class="px-4 py-2.5 text-slate-400 text-[11px]"><?= date('d M, Y', strtotime($st['created_at'])) ?></td>
+                                <td class="px-4 py-2 text-slate-400 text-[11px]"><?= date('d M, Y', strtotime($st['created_at'])) ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -289,10 +289,10 @@ $paid_cnt = (int)($admin_stats['paid_students'] ?? 0);
                 <table class="w-full text-left text-xs">
                     <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider">
                         <tr>
-                            <th class="px-4 py-2.5">Candidate</th>
-                            <th class="px-4 py-2.5">Course</th>
-                            <th class="px-4 py-2.5">Mobile</th>
-                            <th class="px-4 py-2.5">Date</th>
+                            <th class="px-4 py-2">Candidate</th>
+                            <th class="px-4 py-2">Course</th>
+                            <th class="px-4 py-2">Mobile</th>
+                            <th class="px-4 py-2">Date</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
@@ -305,17 +305,17 @@ $paid_cnt = (int)($admin_stats['paid_students'] ?? 0);
                         <?php else: ?>
                             <?php foreach ($recent_admissions as $adm): ?>
                                 <tr class="hover:bg-slate-50/80 transition-colors">
-                                    <td class="px-4 py-2.5">
+                                    <td class="px-4 py-2">
                                         <div class="font-semibold text-[#0e1e2e]"><?= htmlspecialchars($adm['name']) ?></div>
                                         <div class="text-[11px] text-slate-400"><?= htmlspecialchars($adm['email']) ?></div>
                                     </td>
-                                    <td class="px-4 py-2.5">
+                                    <td class="px-4 py-2">
                                         <span class="px-1.5 py-0.5 text-[10px] font-medium bg-slate-100 text-slate-700 rounded border border-slate-200">
                                             <?= htmlspecialchars($adm['course'] ?? 'N/A') ?>
                                         </span>
                                     </td>
-                                    <td class="px-4 py-2.5 text-slate-600"><?= htmlspecialchars($adm['mobile'] ?? 'N/A') ?></td>
-                                    <td class="px-4 py-2.5 text-slate-400 text-[11px]"><?= date('d M, Y', strtotime($adm['created_at'])) ?></td>
+                                    <td class="px-4 py-2 text-slate-600"><?= htmlspecialchars($adm['mobile'] ?? 'N/A') ?></td>
+                                    <td class="px-4 py-2 text-slate-400 text-[11px]"><?= date('d M, Y', strtotime($adm['created_at'])) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -341,10 +341,10 @@ $paid_cnt = (int)($admin_stats['paid_students'] ?? 0);
                 <table class="w-full text-left text-xs">
                     <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider">
                         <tr>
-                            <th class="px-4 py-2.5">Name</th>
-                            <th class="px-4 py-2.5">Subject</th>
-                            <th class="px-4 py-2.5">Status</th>
-                            <th class="px-4 py-2.5">Date</th>
+                            <th class="px-4 py-2">Name</th>
+                            <th class="px-4 py-2">Subject</th>
+                            <th class="px-4 py-2">Status</th>
+                            <th class="px-4 py-2">Date</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
@@ -357,17 +357,17 @@ $paid_cnt = (int)($admin_stats['paid_students'] ?? 0);
                         <?php else: ?>
                             <?php foreach ($recent_inquiries as $inq): ?>
                                 <tr class="hover:bg-slate-50/80 transition-colors">
-                                    <td class="px-4 py-2.5">
+                                    <td class="px-4 py-2">
                                         <div class="font-semibold text-[#0e1e2e]"><?= htmlspecialchars($inq['name']) ?></div>
                                         <div class="text-[11px] text-slate-400"><?= htmlspecialchars($inq['email']) ?></div>
                                     </td>
-                                    <td class="px-4 py-2.5 text-slate-600 truncate max-w-[140px]"><?= htmlspecialchars($inq['subject']) ?></td>
-                                    <td class="px-4 py-2.5">
+                                    <td class="px-4 py-2 text-slate-600 truncate max-w-[140px]"><?= htmlspecialchars($inq['subject']) ?></td>
+                                    <td class="px-4 py-2">
                                         <span class="px-1.5 py-0.5 text-[10px] font-semibold rounded <?= $inq['status'] === 'New' ? 'bg-rose-50 text-rose-600 border border-rose-200' : 'bg-emerald-50 text-emerald-600 border border-emerald-200' ?>">
                                             <?= htmlspecialchars($inq['status'] ?? 'New') ?>
                                         </span>
                                     </td>
-                                    <td class="px-4 py-2.5 text-slate-400 text-[11px]"><?= date('d M, Y', strtotime($inq['created_at'])) ?></td>
+                                    <td class="px-4 py-2 text-slate-400 text-[11px]"><?= date('d M, Y', strtotime($inq['created_at'])) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>

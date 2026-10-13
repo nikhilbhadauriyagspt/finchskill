@@ -1,5 +1,7 @@
-<!-- Header  -->
-<?php include "header.php" ?>
+<?php
+$page_title = "Finchskills Institute - Aviation, Hospitality, Travel & Cruise Training";
+include "header.php";
+?>
 
 
     <!-- ================= Hero Section ================= -->
@@ -71,24 +73,32 @@
                         <div class="hero-btns">
 
                             <?php if (!empty($isStudentLoggedIn)): ?>
-                                <a href="form-submission.php" class="hero-btn hero-btn-register">
-                                    <i class="fa-solid fa-file-signature me-2"></i>
-                                    <span>Apply Online</span>
+                                <a href="student-profile.php" class="hero-btn hero-btn-register">
+                                    <i class="fa-solid fa-gauge-high me-2"></i>
+                                    <span>My Dashboard</span>
                                     <i class="fa-solid fa-arrow-right ms-2 hero-btn-arrow"></i>
                                 </a>
                             <?php else: ?>
-                                <a href="register.php?redirect=form-submission.php" class="hero-btn hero-btn-register">
+                                <a href="register.php" class="hero-btn hero-btn-register">
                                     <i class="fa-solid fa-user-pen me-2"></i>
-                                    <span>Register Yourself</span>
+                                    <span>Registration</span>
                                     <i class="fa-solid fa-arrow-right ms-2 hero-btn-arrow"></i>
                                 </a>
                             <?php endif; ?>
 
-                            <a href="fee-submission.php" class="hero-btn hero-btn-fee">
-                                <i class="fa-solid fa-receipt me-2"></i>
-                                <span>Fee Submission</span>
-                                <i class="fa-solid fa-chevron-right ms-2 hero-btn-arrow"></i>
-                            </a>
+                            <?php if (!empty($isStudentLoggedIn)): ?>
+                                <a href="seat-reservation.php" class="hero-btn hero-btn-fee">
+                                    <i class="fa-solid fa-chair me-2"></i>
+                                    <span>Reserve Your Seat</span>
+                                    <i class="fa-solid fa-chevron-right ms-2 hero-btn-arrow"></i>
+                                </a>
+                            <?php else: ?>
+                                <a href="register.php?redirect=seat-reservation.php" class="hero-btn hero-btn-fee">
+                                    <i class="fa-solid fa-chair me-2"></i>
+                                    <span>Reserve Your Seat</span>
+                                    <i class="fa-solid fa-chevron-right ms-2 hero-btn-arrow"></i>
+                                </a>
+                            <?php endif; ?>
 
                         </div>
 
@@ -338,12 +348,12 @@
                             <?php if (!empty($isStudentLoggedIn)): ?>
                                 <a href="form-submission.php" class="hero-btn hero-btn-fee">
                                     <i class="fa-solid fa-file-signature me-2"></i>
-                                    <span>Apply Online</span>
+                                    <span>Admission</span>
                                 </a>
                             <?php else: ?>
-                                <a href="register.php?redirect=form-submission.php" class="hero-btn hero-btn-fee">
+                                <a href="register.php" class="hero-btn hero-btn-fee">
                                     <i class="fa-solid fa-user-plus me-2"></i>
-                                    <span>Register Yourself</span>
+                                    <span>Registration</span>
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -365,7 +375,7 @@
                                    FROM courses cr 
                                    LEFT JOIN course_categories cat ON cr.category_id = cat.id 
                                    WHERE cr.status = 'active' AND cr.is_featured = 1 
-                                   ORDER BY cr.id DESC");
+                                   ORDER BY cr.id ASC");
     $home_featured_courses = $home_feat_stmt ? $home_feat_stmt->fetchAll() : [];
     ?>
     <section class="popular-course-section">
@@ -442,10 +452,11 @@
 
                                     <div class="course-meta">
                                         <span class="cm-item"><i class="fa-regular fa-clock"></i> <?= htmlspecialchars($fc['duration'] ?: '6 Months') ?></span>
-                                        <?php if (!empty($fc['fee'])): ?>
-                                            <span class="cm-item text-success fw-bold"><i class="fa-solid fa-indian-rupee-sign"></i> <?= htmlspecialchars($fc['fee']) ?></span>
+                                      
+                                        <span class="cm-item text-primary"><i class="fa-solid <?= (stripos($fc['study_mode'] ?? '', 'online') !== false) ? 'fa-globe' : 'fa-building-columns' ?>"></i> <?= htmlspecialchars($fc['study_mode'] ?? 'Offline') ?></span>
+                                        <?php if (!empty($fc['modules'])): ?>
+                                            <span class="cm-item text-muted"><i class="fa-solid fa-book-open"></i> <?= htmlspecialchars($fc['modules']) ?></span>
                                         <?php endif; ?>
-                                        <span class="cm-item"><i class="fa-solid fa-briefcase"></i> 100% Placement</span>
                                     </div>
 
                                     <div class="course-card-footer">
@@ -677,13 +688,13 @@
                                 <?php if (!empty($isStudentLoggedIn)): ?>
                                     <a href="form-submission.php" class="why-primary-btn">
                                         <i class="fa-solid fa-file-signature me-1"></i>
-                                        <span>Apply Online</span>
+                                        <span>Admission</span>
                                         <i class="fa-solid fa-arrow-right ms-1"></i>
                                     </a>
                                 <?php else: ?>
-                                    <a href="register.php?redirect=form-submission.php" class="why-primary-btn">
+                                    <a href="register.php" class="why-primary-btn">
                                         <i class="fa-solid fa-user-pen me-1"></i>
-                                        <span>Register Yourself</span>
+                                        <span>Registration</span>
                                         <i class="fa-solid fa-arrow-right ms-1"></i>
                                     </a>
                                 <?php endif; ?>
@@ -913,11 +924,15 @@
 
                 <?php if (!empty($isStudentLoggedIn)): ?>
                     <a href="form-submission.php" class="instructor-btn">
-                        <i class="fa-solid fa-file-signature me-2"></i>Apply Online Now
+                        <i class="fa-solid fa-file-signature me-2"></i>
+                        <span>Admission</span>
+                        <i class="fa-solid fa-arrow-right ms-2 instructor-btn-arrow"></i>
                     </a>
                 <?php else: ?>
-                    <a href="register.php?redirect=form-submission.php" class="instructor-btn">
-                        <i class="fa-solid fa-user-pen me-2"></i>Register Yourself
+                    <a href="register.php" class="instructor-btn">
+                        <i class="fa-solid fa-user-pen me-2"></i>
+                        <span>Registration</span>
+                        <i class="fa-solid fa-arrow-right ms-2 instructor-btn-arrow"></i>
                     </a>
                 <?php endif; ?>
 

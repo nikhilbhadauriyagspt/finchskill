@@ -16,8 +16,8 @@ if ($isStudentLoggedIn && !empty($_SESSION['student_db_id'])) {
 $courses_stmt = $pdo->query("SELECT id, title, slug, duration, study_mode, fee FROM courses WHERE status = 'active' ORDER BY title ASC");
 $all_courses = $courses_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Preselected course from query string (?course=...)
-$preselected_course = trim($_GET['course'] ?? '');
+// Preselected course from query string (?course=...) or student's booked course
+$preselected_course = trim($_GET['course'] ?? ($student['booked_course'] ?? ''));
 
 // Razorpay Settings
 $settings = [];
@@ -444,10 +444,10 @@ include "header.php";
         <div class="row justify-content-center">
             <div class="col-xl-9 col-lg-10">
 
-                <!-- TOP GUEST OR CANDIDATE BADGE -->
+                <!-- TOP GUEST OR STUDENT BADGE -->
                 <?php if ($isStudentLoggedIn && $student): ?>
-                    <div class="alert alert-light border border-slate-200 rounded-2 p-2.5 mb-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <div class="d-flex align-items-center gap-2.5">
+                    <div class="alert alert-light border border-slate-200 rounded-2 p-2 mb-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <div class="d-flex align-items-center gap-2">
                             <?php if (!empty($student['photo']) && file_exists(__DIR__ . '/' . $student['photo'])): ?>
                                 <img src="<?= htmlspecialchars($student['photo']) ?>" alt="Photo" class="rounded-circle border border-warning" style="width: 38px; height: 38px; object-fit: cover;">
                             <?php else: ?>
@@ -456,7 +456,7 @@ include "header.php";
                                 </div>
                             <?php endif; ?>
                             <div>
-                                <div class="fw-bold text-dark small d-flex align-items-center gap-1.5">
+                                <div class="fw-bold text-dark small d-flex align-items-center gap-1">
                                     <span><?= htmlspecialchars($student['name']) ?></span>
                                     <span class="badge bg-light text-dark border font-monospace" style="font-size: 10px;">
                                         <?= htmlspecialchars($student['student_id']) ?>
@@ -467,19 +467,19 @@ include "header.php";
                                 </div>
                             </div>
                         </div>
-                        <a href="student-profile.php" class="btn btn-sm btn-outline-secondary py-1 px-2.5" style="font-size: 12px;">My Dashboard</a>
+                        <a href="student-profile.php" class="btn btn-sm btn-outline-secondary py-1 px-2" style="font-size: 12px;">My Dashboard</a>
                     </div>
                 <?php else: ?>
-                    <div class="alert alert-light border border-slate-200 rounded-2 p-2.5 mb-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
+                    <div class="alert alert-light border border-slate-200 rounded-2 p-2 mb-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
                         <div class="d-flex align-items-center gap-2 text-dark small">
                             <i class="fa-solid fa-circle-info text-primary fs-6"></i>
                             <span>Already registered? Log in to auto-fill your personal profile details.</span>
                         </div>
-                        <div class="d-flex gap-1.5">
-                            <a href="student-login.php?redirect=form-submission.php<?= !empty($preselected_course) ? '?course=' . urlencode($preselected_course) : '' ?>" class="btn btn-sm btn-outline-primary py-1 px-2.5" style="font-size: 12px;">
+                        <div class="d-flex gap-1">
+                            <a href="student-login.php?redirect=form-submission.php<?= !empty($preselected_course) ? '?course=' . urlencode($preselected_course) : '' ?>" class="btn btn-sm btn-outline-primary py-1 px-2" style="font-size: 12px;">
                                 <i class="fa-solid fa-arrow-right-to-bracket me-1"></i> Log In
                             </a>
-                            <a href="register.php" class="btn btn-sm btn-primary py-1 px-2.5" style="background:#fe7c03; border-color:#fe7c03; font-size: 12px;">
+                            <a href="register.php" class="btn btn-sm btn-primary py-1 px-2" style="background:#fe7c03; border-color:#fe7c03; font-size: 12px;">
                                 <i class="fa-solid fa-user-plus me-1"></i> Register
                             </a>
                         </div>
@@ -504,7 +504,7 @@ include "header.php";
                             <!-- STEP 1 -->
                             <div class="step-item active" id="stepIndicator1" onclick="jumpToStep(1)">
                                 <div class="step-circle"><i class="fa-solid fa-user"></i></div>
-                                <span class="step-label">1. Candidate</span>
+                                <span class="step-label">1. Student</span>
                             </div>
 
                             <!-- STEP 2 -->
@@ -550,11 +550,11 @@ include "header.php";
                             <input type="hidden" name="existing_photo" value="<?= htmlspecialchars($student['photo'] ?? '') ?>">
 
                             <!-- ============================================ -->
-                            <!-- STEP 1: CANDIDATE PERSONAL DETAILS -->
+                            <!-- STEP 1: STUDENT PERSONAL DETAILS -->
                             <!-- ============================================ -->
                             <div class="wizard-step-pane active" id="stepPane1">
                                 <h3 class="step-heading">Step 1: Personal &amp; Identity Information</h3>
-                                <p class="step-subheading">Please review your primary candidate information. Fields with <span class="text-danger">*</span> are mandatory.</p>
+                                <p class="step-subheading">Please review your primary student information. Fields with <span class="text-danger">*</span> are mandatory.</p>
 
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -562,14 +562,14 @@ include "header.php";
                                             <span>Full Name <span class="req">*</span></span>
                                             <?php if ($isStudentLoggedIn): ?><span class="badge bg-success-subtle text-success py-0" style="font-size:10px;">Autofilled</span><?php endif; ?>
                                         </label>
-                                        <input type="text" name="name" id="f_name" class="form-control-custom" value="<?= htmlspecialchars($student['name'] ?? '') ?>" placeholder="Your complete official name" required>
+                                        <input type="text" name="name" id="f_name" class="form-control-custom" value="<?= htmlspecialchars($student['name'] ?? '') ?>" required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label-custom">
                                             <span>Father's / Guardian's Name <span class="req">*</span></span>
                                         </label>
-                                        <input type="text" name="father_name" id="f_father_name" class="form-control-custom" placeholder="Father's or Guardian's full name" required>
+                                        <input type="text" name="father_name" id="f_father_name" class="form-control-custom" required>
                                     </div>
 
                                     <div class="col-md-6">
@@ -577,7 +577,7 @@ include "header.php";
                                             <span>Email Address <span class="req">*</span></span>
                                             <?php if ($isStudentLoggedIn): ?><span class="badge bg-success-subtle text-success py-0" style="font-size:10px;">Verified</span><?php endif; ?>
                                         </label>
-                                        <input type="email" name="email" id="f_email" class="form-control-custom" value="<?= htmlspecialchars($student['email'] ?? '') ?>" placeholder="name@example.com" required <?= $isStudentLoggedIn ? 'readonly' : '' ?>>
+                                        <input type="email" name="email" id="f_email" class="form-control-custom" value="<?= htmlspecialchars($student['email'] ?? '') ?>" required <?= $isStudentLoggedIn ? 'readonly' : '' ?>>
                                     </div>
 
                                     <div class="col-md-6">
@@ -585,7 +585,7 @@ include "header.php";
                                             <span>WhatsApp / Mobile Number <span class="req">*</span></span>
                                             <?php if ($isStudentLoggedIn): ?><span class="badge bg-success-subtle text-success py-0" style="font-size:10px;">Autofilled</span><?php endif; ?>
                                         </label>
-                                        <input type="tel" name="mobile" id="f_mobile" class="form-control-custom" value="<?= htmlspecialchars($student['phone'] ?? '') ?>" placeholder="+91 98765 43210" required>
+                                        <input type="tel" name="mobile" id="f_mobile" class="form-control-custom" value="<?= htmlspecialchars($student['phone'] ?? '') ?>" required>
                                     </div>
 
                                     <div class="col-md-4">
@@ -593,7 +593,7 @@ include "header.php";
                                             <span>12-Digit Aadhaar Number <span class="req">*</span></span>
                                             <?php if ($isStudentLoggedIn): ?><span class="badge bg-success-subtle text-success py-0" style="font-size:10px;">Autofilled</span><?php endif; ?>
                                         </label>
-                                        <input type="text" name="aadhaar" id="f_aadhaar" class="form-control-custom font-monospace" value="<?= htmlspecialchars($student['aadhaar'] ?? '') ?>" placeholder="XXXX XXXX XXXX" maxlength="14" required>
+                                        <input type="text" name="aadhaar" id="f_aadhaar" class="form-control-custom font-monospace" value="<?= htmlspecialchars($student['aadhaar'] ?? '') ?>" maxlength="14" required>
                                     </div>
 
                                     <div class="col-md-4">
@@ -657,7 +657,7 @@ include "header.php";
                                     </div>
 
                                     <div class="col-md-12">
-                                        <div id="courseInfoBadge" class="p-2.5 bg-light rounded-2 border d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                        <div id="courseInfoBadge" class="p-2 bg-light rounded-2 border d-flex align-items-center justify-content-between flex-wrap gap-2">
                                             <div class="d-flex align-items-center gap-2">
                                                 <i class="fa-solid fa-award text-warning fs-5"></i>
                                                 <div>
@@ -693,21 +693,21 @@ include "header.php";
                                         <label class="form-label-custom">
                                             <span>Board / University Name <span class="req">*</span></span>
                                         </label>
-                                        <input type="text" name="board_university" id="f_board" class="form-control-custom" placeholder="e.g. CBSE / ICSE / State Board / University" required>
+                                        <input type="text" name="board_university" id="f_board" class="form-control-custom" required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label-custom">
                                             <span>Year of Passing <span class="req">*</span></span>
                                         </label>
-                                        <input type="number" name="passing_year" id="f_passing_year" class="form-control-custom font-monospace" placeholder="e.g. 2024" min="2000" max="2030" required>
+                                        <input type="number" name="passing_year" id="f_passing_year" class="form-control-custom font-monospace" min="2000" max="2030" required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label-custom">
                                             <span>Percentage / CGPA <span class="req">*</span></span>
                                         </label>
-                                        <input type="text" name="percentage" id="f_percentage" class="form-control-custom font-monospace" placeholder="e.g. 78.5% or 8.2 CGPA" required>
+                                        <input type="text" name="percentage" id="f_percentage" class="form-control-custom font-monospace" required>
                                     </div>
                                 </div>
 
@@ -735,14 +735,14 @@ include "header.php";
                                         <label class="form-label-custom">
                                             <span>Full House Address (Street / Landmark / House No.) <span class="req">*</span></span>
                                         </label>
-                                        <textarea name="address" id="f_address" rows="2" class="form-control-custom" placeholder="House No, Building, Street, Landmark..." required></textarea>
+                                        <textarea name="address" id="f_address" rows="2" class="form-control-custom" required></textarea>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label-custom">
                                             <span>City / District <span class="req">*</span></span>
                                         </label>
-                                        <input type="text" name="city" id="f_city" class="form-control-custom" placeholder="e.g. Ghaziabad / Noida / New Delhi" required>
+                                        <input type="text" name="city" id="f_city" class="form-control-custom" required>
                                     </div>
 
                                     <div class="col-md-6">
@@ -750,19 +750,48 @@ include "header.php";
                                             <span>State / Union Territory <span class="req">*</span></span>
                                         </label>
                                         <select name="state" id="f_state" class="form-select-custom" required>
-                                            <option value="">Select State</option>
-                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                            <option value="Delhi">Delhi</option>
-                                            <option value="Haryana">Haryana</option>
-                                            <option value="Punjab">Punjab</option>
-                                            <option value="Rajasthan">Rajasthan</option>
-                                            <option value="Bihar">Bihar</option>
-                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                            <option value="Uttarakhand">Uttarakhand</option>
-                                            <option value="Maharashtra">Maharashtra</option>
-                                            <option value="West Bengal">West Bengal</option>
-                                            <option value="Gujarat">Gujarat</option>
-                                            <option value="Other">Other State / UT</option>
+                                            <option value="">Select State / UT</option>
+                                            <optgroup label="States">
+                                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                <option value="Assam">Assam</option>
+                                                <option value="Bihar">Bihar</option>
+                                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                                <option value="Goa">Goa</option>
+                                                <option value="Gujarat">Gujarat</option>
+                                                <option value="Haryana">Haryana</option>
+                                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                <option value="Jharkhand">Jharkhand</option>
+                                                <option value="Karnataka">Karnataka</option>
+                                                <option value="Kerala">Kerala</option>
+                                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                <option value="Maharashtra">Maharashtra</option>
+                                                <option value="Manipur">Manipur</option>
+                                                <option value="Meghalaya">Meghalaya</option>
+                                                <option value="Mizoram">Mizoram</option>
+                                                <option value="Nagaland">Nagaland</option>
+                                                <option value="Odisha">Odisha</option>
+                                                <option value="Punjab">Punjab</option>
+                                                <option value="Rajasthan">Rajasthan</option>
+                                                <option value="Sikkim">Sikkim</option>
+                                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                                <option value="Telangana">Telangana</option>
+                                                <option value="Tripura">Tripura</option>
+                                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                <option value="Uttarakhand">Uttarakhand</option>
+                                                <option value="West Bengal">West Bengal</option>
+                                            </optgroup>
+                                            <optgroup label="Union Territories">
+                                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                                <option value="Chandigarh">Chandigarh</option>
+                                                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                                                <option value="Delhi">Delhi (NCT)</option>
+                                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                <option value="Ladakh">Ladakh</option>
+                                                <option value="Lakshadweep">Lakshadweep</option>
+                                                <option value="Puducherry">Puducherry</option>
+                                            </optgroup>
+                                            <option value="Other">Other</option>
                                         </select>
                                     </div>
 
@@ -770,14 +799,14 @@ include "header.php";
                                         <label class="form-label-custom">
                                             <span>Post Office <span class="req">*</span></span>
                                         </label>
-                                        <input type="text" name="post_office" id="f_post_office" class="form-control-custom" placeholder="Local Post Office name" required>
+                                        <input type="text" name="post_office" id="f_post_office" class="form-control-custom" required>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label-custom">
                                             <span>6-Digit Pin Code <span class="req">*</span></span>
                                         </label>
-                                        <input type="text" name="pincode" id="f_pincode" class="form-control-custom font-monospace" placeholder="e.g. 201016" maxlength="6" required>
+                                        <input type="text" name="pincode" id="f_pincode" class="form-control-custom font-monospace" maxlength="6" required>
                                     </div>
                                 </div>
 
@@ -876,11 +905,11 @@ include "header.php";
                                     <div class="col-md-6">
                                         <div class="review-card">
                                             <div class="review-card-title">
-                                                <span><i class="fa-solid fa-user me-1 text-primary"></i> Candidate Details</span>
+                                                <span><i class="fa-solid fa-user me-1 text-primary"></i> Student Details</span>
                                                 <button type="button" class="btn btn-sm btn-link p-0 text-decoration-none" onclick="goToStep(1)">Edit</button>
                                             </div>
                                             <div class="review-row">
-                                                <span class="review-label">Candidate Name</span>
+                                                <span class="review-label">Student Name</span>
                                                 <span class="review-val" id="r_name">-</span>
                                             </div>
                                             <div class="review-row">
@@ -947,7 +976,7 @@ include "header.php";
                                     </div>
                                 </div>
 
-                                <div class="p-2.5 bg-light rounded-2 border mt-2">
+                                <div class="p-2 bg-light rounded-2 border mt-2">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="declarationCheck" required>
                                         <label class="form-check-label small text-dark fw-semibold" for="declarationCheck">
@@ -974,13 +1003,21 @@ include "header.php";
                             <div class="wizard-step-pane" id="stepPane6">
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <h3 class="step-heading mb-0">Step 6: Course Fee Submission</h3>
-                                    <span class="badge bg-warning-subtle text-dark border font-monospace px-2.5 py-1" style="font-size:11px;" id="dispAppRef">
+                                    <span class="badge bg-warning-subtle text-dark border font-monospace px-2 py-1" style="font-size:11px;" id="dispAppRef">
                                         Ref: ADM-PENDING
                                     </span>
                                 </div>
                                 <p class="step-subheading">
                                     Your application has been verified. Choose your payment plan below to complete admission and receive your official enrollment receipt.
                                 </p>
+
+                                <!-- 100% SEAT BOOKING FEE ADJUSTMENT CALLOUT -->
+                                <div id="seatAdjustmentAlert" class="alert alert-success border-success-subtle d-flex align-items-center gap-2 p-2 rounded-2 mb-3" style="display:none;">
+                                    <i class="fa-solid fa-circle-check text-success fs-5"></i>
+                                    <div class="small text-dark">
+                                        <strong class="text-success" id="dispSeatAdjHeading">Seat Reservation Fee Adjusted!</strong> Your booking fee (<span id="dispSeatAdjSubText">₹0</span>) has been directly deducted from your total course fee.
+                                    </div>
+                                </div>
 
                                 <div class="row g-3 mb-3">
                                     <!-- Option A: Full Payment with Discount -->
@@ -997,15 +1034,19 @@ include "header.php";
                                             
                                             <div class="p-2 bg-light rounded-2 border">
                                                 <div class="d-flex justify-content-between text-muted small">
-                                                    <span>Standard Course Fee:</span>
-                                                    <span class="text-decoration-line-through font-monospace" id="dispBaseFee">₹0</span>
+                                                    <span>Course Total Fee:</span>
+                                                    <span class="font-monospace" id="dispBaseFee">₹0</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between text-success small" id="rowSeatAdjFull" style="display:none;">
+                                                    <span>Seat Booking Fee:</span>
+                                                    <strong id="dispSeatAdjFull">- ₹0</strong>
                                                 </div>
                                                 <div class="d-flex justify-content-between text-success small">
                                                     <span>Full Pay Discount:</span>
                                                     <strong id="dispDiscountAmt">- ₹0</strong>
                                                 </div>
                                                 <div class="d-flex justify-content-between text-dark fw-bold pt-1 border-top mt-1" style="font-size:14px;">
-                                                    <span>Final Payable:</span>
+                                                    <span>Final Payable Now:</span>
                                                     <span class="text-success" id="dispFullPayFinal">₹0</span>
                                                 </div>
                                             </div>
@@ -1017,14 +1058,18 @@ include "header.php";
                                         <div class="plan-option-card" id="optCardInst" onclick="selectPaymentPlan('installment')">
                                             <div class="d-flex justify-content-between align-items-start mb-2">
                                                 <div>
-                                                    <strong class="text-dark d-block">Option B: Part-Wise Installments</strong>
-                                                    <span class="badge bg-secondary-subtle text-dark border px-2 py-0.5" style="font-size:11px;" id="dispInstBadge">2 Easy Parts</span>
+                                                    <strong class="text-dark d-block">Option B: Monthly Installments</strong>
+                                                    <span class="badge bg-secondary-subtle text-dark border px-2 py-0.5" style="font-size:11px;" id="dispInstBadge">Monthly Parts</span>
                                                 </div>
                                                 <input type="radio" name="plan_choice" value="installment" class="form-check-input mt-1">
                                             </div>
-                                            <p class="small text-muted mb-2">Split total course fees across duration. Pay Part 1 today.</p>
+                                            <p class="small text-muted mb-2">Split remaining course fees monthly across duration. Pay Part 1 today.</p>
 
                                             <div class="p-2 bg-light rounded-2 border">
+                                                <div class="d-flex justify-content-between text-success small" id="rowSeatAdjInst" style="display:none;">
+                                                    <span>Seat Booking Fee:</span>
+                                                    <strong id="dispSeatAdjInst">- ₹0</strong>
+                                                </div>
                                                 <div class="d-flex justify-content-between text-muted small">
                                                     <span>Part 1 (Payable Today):</span>
                                                     <strong class="text-dark" id="dispPart1Amt">₹0</strong>
@@ -1034,7 +1079,7 @@ include "header.php";
                                                     <span id="dispRemPartsText">Scheduled Monthly</span>
                                                 </div>
                                                 <div class="d-flex justify-content-between text-dark fw-bold pt-1 border-top mt-1" style="font-size:14px;">
-                                                    <span>Total Over Duration:</span>
+                                                    <span>Net Balance Over Duration:</span>
                                                     <span class="text-primary" id="dispInstTotal">₹0</span>
                                                 </div>
                                             </div>
@@ -1044,10 +1089,10 @@ include "header.php";
 
                                 <!-- Schedule Drawer (For Installment Option) -->
                                 <div id="instScheduleDrawer" class="p-3 bg-light rounded-2 border mb-3" style="display: none;">
-                                    <div class="fw-bold text-dark small mb-2 d-flex align-items-center gap-1.5">
+                                    <div class="fw-bold text-dark small mb-2 d-flex align-items-center gap-1">
                                         <i class="fa-solid fa-calendar-days text-primary"></i> Installment Breakdown Schedule:
                                     </div>
-                                    <div id="instScheduleList" class="d-flex flex-column gap-1.5">
+                                    <div id="instScheduleList" class="d-flex flex-column gap-1">
                                         <!-- Populated via JS -->
                                     </div>
                                 </div>
@@ -1061,7 +1106,7 @@ include "header.php";
                                     <div>
                                         <button type="button" class="btn-wizard-submit" id="btnPayCourseFee" onclick="initiateCourseFeePayment()">
                                             <i class="fa-solid fa-lock"></i>
-                                            <span id="btnPayText">Pay Now via Razorpay &amp; Confirm</span>
+                                            <span id="btnPayText">Pay Now  &amp; Confirm</span>
                                         </button>
                                     </div>
                                 </div>
@@ -1093,6 +1138,7 @@ include "header.php";
 let currentStep = 1;
 const totalSteps = 6;
 let submittedAdmissionId = 0;
+let submittedDraftToken = '';
 let feeCalculationData = null;
 let selectedPlan = 'full';
 
@@ -1255,10 +1301,17 @@ function selectPaymentPlan(plan) {
 function fetchFeeCalculations(courseTitle) {
     showFormLoader('Calculating Course Fees...', 'Fetching discount and installment plan');
 
+    const studentIdInput = document.querySelector('input[name="student_id"]');
+    const stdIdVal = studentIdInput ? studentIdInput.value : '';
+
     fetch('process-fee-payment.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'calculate_fee', course: courseTitle })
+        body: JSON.stringify({ 
+            action: 'calculate_fee', 
+            course: courseTitle,
+            student_id: stdIdVal 
+        })
     })
     .then(res => res.json())
     .then(data => {
@@ -1266,16 +1319,44 @@ function fetchFeeCalculations(courseTitle) {
         if (data.success) {
             feeCalculationData = data;
             
-            // Full Pay
+            // Base Fee
             document.getElementById('dispBaseFee').textContent = data.course.formatted_fee;
+
+            // Seat Booking Fee Adjusted
+            const seatAlert = document.getElementById('seatAdjustmentAlert');
+            const rowSeatAdjFull = document.getElementById('rowSeatAdjFull');
+            const rowSeatAdjInst = document.getElementById('rowSeatAdjInst');
+
+            if (data.seat_fee_adjusted && data.seat_fee_adjusted > 0) {
+                if (seatAlert) seatAlert.style.display = 'flex';
+                const heading = document.getElementById('dispSeatAdjHeading');
+                const subText = document.getElementById('dispSeatAdjSubText');
+                if (heading) heading.textContent = data.formatted_seat_adjusted + ' Seat Reservation Fee Adjusted!';
+                if (subText) subText.textContent = data.formatted_seat_adjusted;
+
+                if (rowSeatAdjFull) {
+                    rowSeatAdjFull.style.display = 'flex';
+                    document.getElementById('dispSeatAdjFull').textContent = '- ' + data.formatted_seat_adjusted;
+                }
+                if (rowSeatAdjInst) {
+                    rowSeatAdjInst.style.display = 'flex';
+                    document.getElementById('dispSeatAdjInst').textContent = '- ' + data.formatted_seat_adjusted;
+                }
+            } else {
+                if (seatAlert) seatAlert.style.display = 'none';
+                if (rowSeatAdjFull) rowSeatAdjFull.style.display = 'none';
+                if (rowSeatAdjInst) rowSeatAdjInst.style.display = 'none';
+            }
+
+            // Full Pay
             document.getElementById('dispDiscountAmt').textContent = '- ' + data.full_payment.formatted_discount;
             document.getElementById('dispFullPayFinal').textContent = data.full_payment.formatted_final;
 
             // Installment
-            document.getElementById('dispInstBadge').textContent = data.installment_payment.total_parts + ' Easy Installments';
+            document.getElementById('dispInstBadge').textContent = data.installment_payment.total_parts + ' Monthly Parts';
             document.getElementById('dispPart1Amt').textContent = data.installment_payment.formatted_part_amount;
-            document.getElementById('dispRemPartsText').textContent = (data.installment_payment.total_parts - 1) + ' Scheduled Parts Remaining';
-            document.getElementById('dispInstTotal').textContent = data.course.formatted_fee;
+            document.getElementById('dispRemPartsText').textContent = (data.installment_payment.total_parts - 1) + ' Monthly Parts Remaining';
+            document.getElementById('dispInstTotal').textContent = data.installment_payment.formatted_net_payable;
 
             // Render Schedule
             const list = document.getElementById('instScheduleList');
@@ -1330,7 +1411,8 @@ document.getElementById('admissionForm').addEventListener('submit', function(e) 
     .then(data => {
         hideFormLoader();
         if (data.success) {
-            submittedAdmissionId = data.admission_id;
+            submittedDraftToken = data.draft_token || '';
+            submittedAdmissionId = data.admission_id || 0;
             document.getElementById('dispAppRef').textContent = 'Ref: ' + data.app_ref;
 
             // Move to mandatory fee payment Step 6
@@ -1351,8 +1433,8 @@ document.getElementById('admissionForm').addEventListener('submit', function(e) 
 
 // INITIATE RAZORPAY PAYMENT
 function initiateCourseFeePayment() {
-    if (!feeCalculationData || submittedAdmissionId <= 0) {
-        alert('Application data missing. Please re-check application.');
+    if (!feeCalculationData || (!submittedDraftToken && submittedAdmissionId <= 0)) {
+        alert('Application data missing. Please review and re-submit your application.');
         return;
     }
 
@@ -1382,13 +1464,14 @@ function initiateCourseFeePayment() {
             "color": "#fe7c03"
         },
         "handler": function (response) {
-            showFormLoader('Verifying Payment & Generating Receipt...', 'Finalizing course admission registration');
+            showFormLoader('Verifying Payment & Finalizing Admission...', 'Official receipt and enrollment generation');
 
             fetch('process-fee-payment.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     action: 'verify_course_fee',
+                    draft_token: submittedDraftToken,
                     admission_id: submittedAdmissionId,
                     razorpay_payment_id: response.razorpay_payment_id,
                     plan_type: selectedPlan,

@@ -1,5 +1,13 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
+    if (ini_get('session.cookie_path') !== '/') {
+        @ini_set('session.cookie_path', '/');
+    }
+    @session_set_cookie_params([
+        'path' => '/',
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
     session_start();
 }
 require_once __DIR__ . '/db.php';
@@ -12,7 +20,7 @@ $site_favicon = getSetting('site_favicon', 'img/favicon.png');
 $currentPage  = basename($_SERVER['PHP_SELF'] ?? '');
 
 $isStudentLoggedIn = isset($_SESSION['student_logged_in']) && $_SESSION['student_logged_in'] === true;
-$studentName = $_SESSION['student_name'] ?? 'Candidate';
+$studentName = $_SESSION['student_name'] ?? 'Student';
 $studentPhoto = $_SESSION['student_photo'] ?? '';
 $studentCustomId = $_SESSION['student_id'] ?? '';
 
@@ -21,15 +29,15 @@ if (!function_exists('renderEnrollBtn')) {
         $isLoggedIn = !empty($_SESSION['student_logged_in']);
         $courseParam = $courseTitle ? '?course=' . urlencode($courseTitle) : '';
         if ($isLoggedIn) {
-            return '<a href="form-submission.php' . $courseParam . '" class="enroll-btn ' . htmlspecialchars($extraClass) . '" title="Apply Online for ' . htmlspecialchars($courseTitle) . '">'
+            return '<a href="form-submission.php' . $courseParam . '" class="enroll-btn ' . htmlspecialchars($extraClass) . '" title="Admission for ' . htmlspecialchars($courseTitle) . '">'
                 . '<i class="fa-solid fa-file-signature"></i> '
-                . '<span>Apply Online</span>'
+                . '<span>Admission</span>'
                 . '</a>';
         } else {
             $redirect = 'form-submission.php' . $courseParam;
             return '<a href="register.php?redirect=' . urlencode($redirect) . '" class="enroll-btn ' . htmlspecialchars($extraClass) . '" title="Register to Apply">'
                 . '<i class="fa-solid fa-user-pen"></i> '
-                . '<span>Register Yourself</span>'
+                . '<span>Registration</span>'
                 . '</a>';
         }
     }
@@ -268,7 +276,7 @@ if (!function_exists('renderEnrollBtn')) {
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="form-submission.php">
-                                        <i class="fa-solid fa-file-signature text-warning me-2"></i>Apply Online
+                                        <i class="fa-solid fa-file-signature text-warning me-2"></i>Admission
                                     </a>
                                 </li>
                                 <li>
@@ -292,7 +300,7 @@ if (!function_exists('renderEnrollBtn')) {
 
                         <a href="register.php" class="header-btn header-btn-primary buy-btn">
                             <i class="fa-solid fa-user-pen"></i>
-                            <span>Register Yourself</span>
+                            <span>Registration</span>
                         </a>
                     <?php endif; ?>
 

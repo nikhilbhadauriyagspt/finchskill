@@ -164,18 +164,18 @@ $reply_to   = $cfg['smtp_reply_to'] ?? '';
                     </div>
 
                     <!-- Quick Presets -->
-                    <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-md">
+                    <div class="p-2 bg-slate-50 border border-slate-200 rounded-md">
                         <span class="text-[10px] uppercase font-bold text-slate-500 block mb-1.5">
                             <i class="fa-solid fa-wand-magic-sparkles text-[#fe7c03] mr-1"></i> Auto-Fill Server Presets:
                         </span>
-                        <div class="flex flex-wrap gap-1.5">
-                            <button type="button" class="px-2.5 py-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors" onclick="applyPreset('gmail')">
+                        <div class="flex flex-wrap gap-1">
+                            <button type="button" class="px-2 py-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors" onclick="applyPreset('gmail')">
                                 <i class="fa-brands fa-google text-rose-500 mr-1"></i> Gmail
                             </button>
-                            <button type="button" class="px-2.5 py-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors" onclick="applyPreset('hostinger')">
+                            <button type="button" class="px-2 py-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors" onclick="applyPreset('hostinger')">
                                 <i class="fa-solid fa-cloud text-sky-500 mr-1"></i> Hostinger Webmail
                             </button>
-                            <button type="button" class="px-2.5 py-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors" onclick="applyPreset('cpanel')">
+                            <button type="button" class="px-2 py-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded transition-colors" onclick="applyPreset('cpanel')">
                                 <i class="fa-solid fa-globe text-emerald-500 mr-1"></i> cPanel / Custom
                             </button>
                         </div>
@@ -236,7 +236,7 @@ $reply_to   = $cfg['smtp_reply_to'] ?? '';
                     </div>
 
                     <div class="pt-2 text-right">
-                        <button type="submit" class="px-4 py-2 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors inline-flex items-center gap-1.5">
+                        <button type="submit" class="px-4 py-2 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors inline-flex items-center gap-1">
                             <i class="fa-solid fa-floppy-disk text-[11px]"></i>
                             <span>Save SMTP Settings</span>
                         </button>
@@ -250,7 +250,7 @@ $reply_to   = $cfg['smtp_reply_to'] ?? '';
             
             <!-- Live Test Tool -->
             <div class="bg-white border border-slate-200 rounded-md p-4 space-y-3">
-                <h4 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-1.5">
+                <h4 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-1">
                     <i class="fa-solid fa-paper-plane text-emerald-500"></i> Send Live Test Email
                 </h4>
                 <p class="text-[11px] text-slate-400">Enter an email address to verify that emails are reaching actual inboxes.</p>
@@ -259,7 +259,7 @@ $reply_to   = $cfg['smtp_reply_to'] ?? '';
                     <div>
                         <input type="email" name="test_email" class="w-full text-xs px-3 py-1.5 border border-slate-200 rounded-md focus:outline-none focus:border-[#fe7c03]" placeholder="your-email@gmail.com" required>
                     </div>
-                    <button type="submit" class="w-full px-3 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-md transition-colors inline-flex items-center justify-center gap-1.5">
+                    <button type="submit" class="w-full px-3 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-md transition-colors inline-flex items-center justify-center gap-1">
                         <i class="fa-solid fa-bolt text-[10px]"></i>
                         <span>Test Connection &amp; Send</span>
                     </button>
@@ -268,7 +268,7 @@ $reply_to   = $cfg['smtp_reply_to'] ?? '';
 
             <!-- Email Triggers -->
             <div class="bg-white border border-slate-200 rounded-md p-4">
-                <h4 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-1.5">
+                <h4 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-1">
                     <i class="fa-solid fa-list-check text-sky-500"></i> Dispatched Emails
                 </h4>
                 <ul class="text-xs text-slate-600 space-y-2 mt-3 divide-y divide-slate-100">

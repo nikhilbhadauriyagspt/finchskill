@@ -9,6 +9,11 @@ DirectoryIndex index.php
 # Disable directory listing
 Options -Indexes
 
+# Route online fee receipts (containing Razorpay, pay_, or REC-) to receipt.php
+RewriteRule ^uploads/fees/Razorpay.*$ receipt.php [QSA,L,NC]
+RewriteRule ^uploads/fees/.*(pay_[a-zA-Z0-9]+).*$ receipt.php [QSA,L,NC]
+RewriteRule ^uploads/fees/.*(REC-[a-zA-Z0-9]+).*$ receipt.php [QSA,L,NC]
+
 # Exclude admin directory, uploads, and PHPMailer from all rewrite rules
 RewriteRule ^(admin|uploads|PHPMailer)(/.*)?$ - [L,NC]
 RewriteCond %{REQUEST_URI} (admin|uploads|PHPMailer) [NC]
@@ -18,9 +23,10 @@ RewriteRule ^ - [L]
 RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^ - [L]
 
-# Redirect direct .php URLs to clean URLs (only for GET requests and frontend)
+# Redirect direct .php URLs to clean URLs (only for initial GET requests and frontend)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteCond %{REQUEST_METHOD} !POST
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s+/([^?]+?)\.php[?\s] [NC]
 RewriteCond %{REQUEST_URI} !(admin|uploads|PHPMailer) [NC]
 RewriteCond %{DOCUMENT_ROOT}/$1.php -f
 RewriteRule ^(.+)\.php$ /$1 [R=301,L,NE]
@@ -29,7 +35,7 @@ RewriteRule ^(.+)\.php$ /$1 [R=301,L,NE]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.+?)/?$ $1.php [L]
+RewriteRule ^(.+?)/?$ $1.php [L,QSA]
 
 # Protect .htaccess
 <Files ".htaccess">

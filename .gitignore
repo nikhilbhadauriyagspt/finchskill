@@ -12,3 +12,6 @@ ehthumbs_vista.db
 # Temporary files
 *.tmp
 *.temp
+error_log
+*.log
+uploads/email_logs.txt

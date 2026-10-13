@@ -1,8 +1,29 @@
-<!-- Header  -->
-<?php include "header.php" ?>
+<?php
+$page_title = "Fee Submission - Finchskills Institute";
+include "header.php";
+?>
 
 
-<section class="edufees-hero-section">
+<style>
+@media (max-width: 767.98px) {
+    .edufees-hero-section,
+    .edufees-heading-wrap {
+        display: none !important;
+    }
+    .edufees-main-section {
+        padding: 16px 0 40px !important;
+    }
+    .edufees-main-wrapper {
+        margin-top: 0 !important;
+    }
+    .edufees-form-box {
+        padding: 22px 18px !important;
+        border-radius: 12px !important;
+    }
+}
+</style>
+
+<section class="edufees-hero-section d-none d-md-block">
     <div class="container">
         <div class="edufees-hero-content">
             <div class="bloghero-breadcrumb">
@@ -29,7 +50,7 @@
 
         <!-- HEADING -->
 
-        <div class="edufees-heading-wrap">
+        <div class="edufees-heading-wrap d-none d-md-block">
 
             <h2>
 
@@ -98,7 +119,7 @@
                 <!--                <i class="fa-solid fa-phone"></i>-->
 
                 <!--                <span>-->
-                <!--                    +91 9690629828-->
+                <!--                    <?= htmlspecialchars($site_phone_1 ?? '') ?>-->
                 <!--                </span>-->
 
                 <!--            </div>-->

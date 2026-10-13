@@ -155,11 +155,11 @@ require_once __DIR__ . '/includes/header.php';
             <p class="text-xs text-slate-400 mt-0.5">Manage training programs, categories, syllabus and tuition settings</p>
         </div>
         <div class="flex items-center gap-2">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#categoryModal" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded-md transition-colors flex items-center gap-1.5">
+            <a href="categories.php" class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-[#fe7c03] rounded-md transition-colors flex items-center gap-1 no-underline">
                 <i class="fa-solid fa-layer-group text-slate-400"></i>
                 <span>Categories</span>
-            </button>
-            <a href="course-add.php" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors flex items-center gap-1.5 no-underline">
+            </a>
+            <a href="course-add.php" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors flex items-center gap-1 no-underline">
                 <i class="fa-solid fa-plus text-[11px]"></i>
                 <span>Add Course</span>
             </a>
@@ -193,10 +193,10 @@ require_once __DIR__ . '/includes/header.php';
 
     <!-- FILTER & SEARCH BAR -->
     <div class="bg-white border border-slate-200 rounded-md p-3">
-        <form method="GET" action="courses.php" class="flex flex-wrap items-center justify-between gap-2.5">
+        <form method="GET" action="courses.php" class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex flex-wrap items-center gap-2">
                 <!-- Category Select -->
-                <select name="category" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
+                <select name="category" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
                     <option value="">All Categories (<?= count($categories) ?>)</option>
                     <?php foreach ($categories as $cat): ?>
                         <option value="<?= $cat['id'] ?>" <?= $selected_category === (int)$cat['id'] ? 'selected' : '' ?>>
@@ -206,7 +206,7 @@ require_once __DIR__ . '/includes/header.php';
                 </select>
 
                 <!-- Status Select -->
-                <select name="status" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2.5 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
+                <select name="status" onchange="this.form.submit()" class="text-xs bg-white border border-slate-200 rounded-md px-2 py-1.5 text-slate-700 focus:outline-none focus:border-[#fe7c03]">
                     <option value="">All Status</option>
                     <option value="active" <?= $selected_status === 'active' ? 'selected' : '' ?>>Active only</option>
                     <option value="inactive" <?= $selected_status === 'inactive' ? 'selected' : '' ?>>Inactive only</option>
@@ -233,14 +233,14 @@ require_once __DIR__ . '/includes/header.php';
             <table class="w-full text-left text-xs">
                 <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px] tracking-wider">
                     <tr>
-                        <th class="px-4 py-2.5">Course</th>
-                        <th class="px-4 py-2.5">Category</th>
-                        <th class="px-4 py-2.5">Duration</th>
-                        <th class="px-4 py-2.5">Fee</th>
-                        <th class="px-4 py-2.5">Mode</th>
-                        <th class="px-4 py-2.5 text-center">Featured</th>
-                        <th class="px-4 py-2.5">Status</th>
-                        <th class="px-4 py-2.5 text-right">Actions</th>
+                        <th class="px-4 py-2">Course</th>
+                        <th class="px-4 py-2">Category</th>
+                        <th class="px-4 py-2">Duration</th>
+                        <th class="px-4 py-2">Fee</th>
+                        <th class="px-4 py-2">Mode</th>
+                        <th class="px-4 py-2 text-center">Featured</th>
+                        <th class="px-4 py-2">Status</th>
+                        <th class="px-4 py-2 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -256,8 +256,8 @@ require_once __DIR__ . '/includes/header.php';
                         <?php foreach ($courses as $c): ?>
                             <tr class="hover:bg-slate-50/80 transition-colors">
                                 <!-- Title & Thumb -->
-                                <td class="px-4 py-2.5">
-                                    <div class="flex items-center gap-2.5">
+                                <td class="px-4 py-2">
+                                    <div class="flex items-center gap-2">
                                         <?php if (!empty($c['image'])): ?>
                                             <img src="../<?= htmlspecialchars($c['image']) ?>" alt="" class="w-10 h-7 rounded object-cover border border-slate-200 bg-slate-100 shrink-0">
                                         <?php else: ?>
@@ -275,7 +275,7 @@ require_once __DIR__ . '/includes/header.php';
                                 </td>
 
                                 <!-- Category -->
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2">
                                     <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
                                         <i class="fa-solid <?= htmlspecialchars($c['category_icon']) ?> text-[9px] text-[#fe7c03]"></i>
                                         <?= htmlspecialchars($c['category_name']) ?>
@@ -283,18 +283,25 @@ require_once __DIR__ . '/includes/header.php';
                                 </td>
 
                                 <!-- Duration -->
-                                <td class="px-4 py-2.5 text-slate-700 font-medium"><?= htmlspecialchars($c['duration']) ?></td>
+                                <td class="px-4 py-2 text-slate-700 font-medium"><?= htmlspecialchars($c['duration']) ?></td>
 
                                 <!-- Fee -->
-                                <td class="px-4 py-2.5 font-semibold text-emerald-700">
+                                <td class="px-4 py-2 font-semibold text-emerald-700">
                                     <?= !empty($c['fee']) ? htmlspecialchars($c['fee']) : '<span class="text-slate-300 font-normal text-[11px]">Not set</span>' ?>
                                 </td>
 
-                                <!-- Mode -->
-                                <td class="px-4 py-2.5 text-slate-500"><?= htmlspecialchars($c['study_mode']) ?></td>
+                                <!-- Mode & Modules -->
+                                <td class="px-4 py-2">
+                                    <span class="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium <?= (stripos($c['study_mode'], 'online') !== false) ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-blue-50 text-blue-700 border border-blue-200' ?>">
+                                        <?= htmlspecialchars($c['study_mode']) ?>
+                                    </span>
+                                    <?php if (!empty($c['modules'])): ?>
+                                        <div class="text-[10.5px] text-slate-400 mt-0.5"><i class="fa-solid fa-book-open text-[9px] mr-1"></i><?= htmlspecialchars($c['modules']) ?></div>
+                                    <?php endif; ?>
+                                </td>
 
                                 <!-- Featured Star -->
-                                <td class="px-4 py-2.5 text-center">
+                                <td class="px-4 py-2 text-center">
                                     <form method="POST" action="courses.php" class="inline-block">
                                         <input type="hidden" name="action" value="toggle_featured">
                                         <input type="hidden" name="course_id" value="<?= $c['id'] ?>">
@@ -309,7 +316,7 @@ require_once __DIR__ . '/includes/header.php';
                                 </td>
 
                                 <!-- Status -->
-                                <td class="px-4 py-2.5">
+                                <td class="px-4 py-2">
                                     <form method="POST" action="courses.php" class="inline-block">
                                         <input type="hidden" name="action" value="toggle_status">
                                         <input type="hidden" name="course_id" value="<?= $c['id'] ?>">
@@ -321,7 +328,7 @@ require_once __DIR__ . '/includes/header.php';
                                 </td>
 
                                 <!-- Actions -->
-                                <td class="px-4 py-2.5 text-right">
+                                <td class="px-4 py-2 text-right">
                                     <div class="inline-flex items-center gap-1">
                                         <!-- Edit -->
                                         <a href="course-edit.php?id=<?= $c['id'] ?>" class="w-7 h-7 rounded border border-slate-200 bg-white text-slate-600 hover:text-[#fe7c03] hover:border-orange-200 flex items-center justify-center transition-colors no-underline" title="Edit Course">
@@ -367,7 +374,7 @@ require_once __DIR__ . '/includes/header.php';
                 <form method="POST" action="courses.php" class="flex gap-2">
                     <input type="hidden" name="action" value="add_category">
                     <input type="text" name="cat_name" class="flex-1 text-xs border border-slate-200 rounded-md px-3 py-1.5 focus:outline-none focus:border-[#fe7c03]" placeholder="New category name..." required>
-                    <input type="text" name="cat_icon" class="w-32 text-xs border border-slate-200 rounded-md px-2.5 py-1.5 focus:outline-none focus:border-[#fe7c03]" value="fa-graduation-cap" placeholder="Icon class">
+                    <input type="text" name="cat_icon" class="w-32 text-xs border border-slate-200 rounded-md px-2 py-1.5 focus:outline-none focus:border-[#fe7c03]" value="fa-graduation-cap" placeholder="Icon class">
                     <button type="submit" class="px-3 py-1.5 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors">Add</button>
                 </form>
 
@@ -409,7 +416,7 @@ require_once __DIR__ . '/includes/header.php';
                 </div>
 
             </div>
-            <div class="modal-footer border-t border-slate-200 py-2.5 px-4 bg-slate-50">
+            <div class="modal-footer border-t border-slate-200 py-2 px-4 bg-slate-50">
                 <button type="button" class="px-3 py-1.5 text-xs text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-# Finchskills Institute (YourGoodGuide)
+# finchskill
 
 A full-fledged educational institute management web portal featuring course programs, dynamic admission inquiries, fee payments, candidate registration with OTP email verification, student portal & ID cards, Razorpay seat reservation fees, and an admin dashboard.
 

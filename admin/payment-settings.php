@@ -115,20 +115,20 @@ $company_name     = $settings['razorpay_company_name'] ?? 'Finchskills Institute
                     <div>
                         <label class="text-xs font-bold text-slate-700 block mb-1.5">Environment Mode</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="p-3 border rounded-md cursor-pointer transition-colors flex items-start gap-2.5 <?= $mode === 'test' ? 'border-orange-300 bg-orange-50/50' : 'border-slate-200 hover:bg-slate-50' ?>">
+                            <label class="p-3 border rounded-md cursor-pointer transition-colors flex items-start gap-2 <?= $mode === 'test' ? 'border-orange-300 bg-orange-50/50' : 'border-slate-200 hover:bg-slate-50' ?>">
                                 <input type="radio" name="razorpay_mode" value="test" <?= $mode === 'test' ? 'checked' : '' ?> class="mt-0.5 text-[#fe7c03] focus:ring-[#fe7c03]">
                                 <div>
-                                    <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                                    <div class="text-xs font-bold text-slate-800 flex items-center gap-1">
                                         <i class="fa-solid fa-vial text-amber-500"></i> Test Sandbox
                                     </div>
                                     <div class="text-[11px] text-slate-400 mt-0.5">Test simulated payments without real money</div>
                                 </div>
                             </label>
 
-                            <label class="p-3 border rounded-md cursor-pointer transition-colors flex items-start gap-2.5 <?= $mode === 'live' ? 'border-emerald-300 bg-emerald-50/50' : 'border-slate-200 hover:bg-slate-50' ?>">
+                            <label class="p-3 border rounded-md cursor-pointer transition-colors flex items-start gap-2 <?= $mode === 'live' ? 'border-emerald-300 bg-emerald-50/50' : 'border-slate-200 hover:bg-slate-50' ?>">
                                 <input type="radio" name="razorpay_mode" value="live" <?= $mode === 'live' ? 'checked' : '' ?> class="mt-0.5 text-emerald-600 focus:ring-emerald-500">
                                 <div>
-                                    <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                                    <div class="text-xs font-bold text-slate-800 flex items-center gap-1">
                                         <i class="fa-solid fa-bolt text-emerald-500"></i> Live Production
                                     </div>
                                     <div class="text-[11px] text-slate-400 mt-0.5">Collect real payments from students</div>
@@ -175,12 +175,12 @@ $company_name     = $settings['razorpay_company_name'] ?? 'Finchskills Institute
                     <!-- TEST KEYS -->
                     <div class="p-3 bg-slate-50 border border-slate-200 rounded-md space-y-2.5">
                         <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                            <span class="text-xs font-bold text-slate-800 flex items-center gap-1">
                                 <i class="fa-solid fa-vial text-amber-500"></i> Test Mode Keys
                             </span>
                             <span class="text-[10px] font-semibold text-slate-400">Sandbox</span>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <div>
                                 <label class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Test Key ID</label>
                                 <input type="text" name="razorpay_test_key_id" value="<?= htmlspecialchars($test_key_id) ?>" placeholder="rzp_test_..." class="w-full text-xs font-mono px-3 py-1.5 border border-slate-200 bg-white rounded-md focus:outline-none focus:border-[#fe7c03]">
@@ -195,12 +195,12 @@ $company_name     = $settings['razorpay_company_name'] ?? 'Finchskills Institute
                     <!-- LIVE KEYS -->
                     <div class="p-3 bg-slate-50 border border-slate-200 rounded-md space-y-2.5">
                         <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                            <span class="text-xs font-bold text-slate-800 flex items-center gap-1">
                                 <i class="fa-solid fa-bolt text-emerald-500"></i> Live Production Keys
                             </span>
                             <span class="text-[10px] font-semibold text-emerald-600">Production</span>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <div>
                                 <label class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Live Key ID</label>
                                 <input type="text" name="razorpay_live_key_id" value="<?= htmlspecialchars($live_key_id) ?>" placeholder="rzp_live_..." class="w-full text-xs font-mono px-3 py-1.5 border border-slate-200 bg-white rounded-md focus:outline-none focus:border-[#fe7c03]">
@@ -213,7 +213,7 @@ $company_name     = $settings['razorpay_company_name'] ?? 'Finchskills Institute
                     </div>
 
                     <div class="pt-2 text-right">
-                        <button type="submit" class="px-4 py-2 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors inline-flex items-center gap-1.5">
+                        <button type="submit" class="px-4 py-2 text-xs font-semibold text-white bg-[#fe7c03] hover:bg-[#ea6c00] rounded-md transition-colors inline-flex items-center gap-1">
                             <i class="fa-solid fa-floppy-disk text-[11px]"></i>
                             <span>Save Gateway Settings</span>
                         </button>
@@ -227,7 +227,7 @@ $company_name     = $settings['razorpay_company_name'] ?? 'Finchskills Institute
                 
                 <!-- Status Card -->
                 <div class="bg-white border border-slate-200 rounded-md p-4">
-                    <h4 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-1.5">
+                    <h4 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-1">
                         <i class="fa-solid fa-circle-check text-emerald-500"></i> Current Status
                     </h4>
                     <div class="divide-y divide-slate-100 text-xs mt-2">
@@ -254,7 +254,7 @@ $company_name     = $settings['razorpay_company_name'] ?? 'Finchskills Institute
 
                 <!-- Instructions Card -->
                 <div class="bg-white border border-slate-200 rounded-md p-4">
-                    <h4 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-1.5">
+                    <h4 class="text-xs font-bold text-[#0e1e2e] uppercase tracking-wider pb-2 border-b border-slate-100 flex items-center gap-1">
                         <i class="fa-solid fa-circle-info text-sky-500"></i> How to Get Keys
                     </h4>
                     <ol class="text-xs text-slate-600 space-y-2 mt-3 list-decimal list-inside leading-relaxed">

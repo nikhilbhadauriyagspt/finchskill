@@ -285,7 +285,7 @@ include "header.php";
                         <span class="text-muted small">
                             <i class="fa-regular fa-clock me-1 text-warning" style="color:#fe7c03 !important;"></i> Last Updated: <strong><?= date('d M Y', strtotime($page['updated_at'] ?? $page['created_at'])) ?></strong>
                         </span>
-                        <button type="button" onclick="window.print()" class="btn btn-sm btn-outline-secondary d-none d-sm-inline-flex align-items-center gap-1.5" style="border-radius:4px; font-size:11.5px;">
+                        <button type="button" onclick="window.print()" class="btn btn-sm btn-outline-secondary d-none d-sm-inline-flex align-items-center gap-1" style="border-radius:4px; font-size:11.5px;">
                             <i class="fa-solid fa-print"></i> Print Document
                         </button>
                     </div>
@@ -329,11 +329,13 @@ include "header.php";
                         <p class="small text-slate-600 mb-3" style="font-size:13px; color:#475569;">
                             If you have questions regarding our terms, admission procedures, or policies, our helpdesk is here to assist.
                         </p>
-                        <a href="tel:+919650386711" class="d-block fw-bold text-dark mb-1 text-decoration-none" style="font-size:14px;">
-                            <i class="fa-solid fa-phone text-warning me-1.5" style="color:#fe7c03 !important;"></i> +91 96503 86711
+                        <?php $p_phone = !empty($site_phone_1) ? $site_phone_1 : getSetting('phone_1', '+919650386711'); ?>
+                        <?php $p_email = !empty($site_email_1) ? $site_email_1 : getSetting('email_1', 'hello@finchskills.com'); ?>
+                        <a href="tel:<?= htmlspecialchars($p_phone) ?>" class="d-block fw-bold text-dark mb-1 text-decoration-none" style="font-size:14px;">
+                            <i class="fa-solid fa-phone text-warning me-1.5" style="color:#fe7c03 !important;"></i> <?= htmlspecialchars($p_phone) ?>
                         </a>
-                        <a href="mailto:info@finchskills.com" class="small text-muted text-decoration-none d-block">
-                            <i class="fa-regular fa-envelope me-1"></i> info@finchskills.com
+                        <a href="mailto:<?= htmlspecialchars($p_email) ?>" class="small text-muted text-decoration-none d-block">
+                            <i class="fa-regular fa-envelope me-1"></i> <?= htmlspecialchars($p_email) ?>
                         </a>
                     </div>
                     <div class="mt-3">

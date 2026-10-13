@@ -15,7 +15,7 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
     
     <!-- Sidebar Brand -->
     <div class="h-16 flex items-center justify-between px-4 border-b border-slate-200 bg-white">
-        <a href="index.php" class="flex items-center gap-2.5 no-underline text-inherit">
+        <a href="index.php" class="flex items-center gap-2 no-underline text-inherit">
             <div class="w-8 h-8 rounded-md bg-[#fe7c03] flex items-center justify-center text-white font-bold text-sm">
                 <i class="fa-solid fa-graduation-cap"></i>
             </div>
@@ -40,8 +40,8 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
         <div>
             <p class="px-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Overview</p>
             <nav class="space-y-0.5">
-                <a href="index.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'index.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="index.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'index.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-gauge-high <?= $current_page === 'index.php' ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Dashboard</span>
                     </div>
@@ -57,8 +57,8 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
             <p class="px-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Management</p>
             <nav class="space-y-0.5">
                 <!-- Courses -->
-                <a href="courses.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= in_array($current_page, ['courses.php', 'course-add.php', 'course-edit.php']) ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="courses.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= in_array($current_page, ['courses.php', 'course-add.php', 'course-edit.php']) ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-book-open-reader <?= in_array($current_page, ['courses.php', 'course-add.php', 'course-edit.php']) ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Courses</span>
                     </div>
@@ -69,9 +69,22 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
                     <?php endif; ?>
                 </a>
 
+                <!-- Course Categories -->
+                <a href="categories.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= in_array($current_page, ['categories.php']) ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 text-center"><i class="fa-solid fa-layer-group <?= in_array($current_page, ['categories.php']) ? 'text-white' : 'text-slate-400' ?>"></i></span>
+                        <span>Course Categories</span>
+                    </div>
+                    <?php if (isset($admin_stats['total_categories'])): ?>
+                        <span class="px-1.5 py-0.2 rounded text-[10px] font-semibold <?= in_array($current_page, ['categories.php']) ? 'bg-white text-[#fe7c03]' : 'bg-slate-100 text-slate-600' ?>">
+                            <?= $admin_stats['total_categories'] ?>
+                        </span>
+                    <?php endif; ?>
+                </a>
+
                 <!-- Registered Students -->
-                <a href="students.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'students.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="students.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'students.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-users <?= $current_page === 'students.php' ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Registered Students</span>
                     </div>
@@ -81,8 +94,8 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
                 </a>
 
                 <!-- Admissions -->
-                <a href="admissions.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= in_array($current_page, ['admissions.php', 'admission-add.php']) ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="admissions.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= in_array($current_page, ['admissions.php', 'admission-add.php']) ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-id-card <?= in_array($current_page, ['admissions.php', 'admission-add.php']) ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Admissions</span>
                     </div>
@@ -92,8 +105,8 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
                 </a>
 
                 <!-- Fee Submissions -->
-                <a href="fees.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'fees.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="fees.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'fees.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-receipt <?= $current_page === 'fees.php' ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Fee Submissions</span>
                     </div>
@@ -103,8 +116,8 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
                 </a>
 
                 <!-- Contact Inquiries -->
-                <a href="contacts.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'contacts.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="contacts.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'contacts.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-envelope <?= $current_page === 'contacts.php' ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Inquiries</span>
                     </div>
@@ -114,8 +127,8 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
                 </a>
 
                 <!-- Pages & Policies -->
-                <a href="pages.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= in_array($current_page, ['pages.php', 'page-edit.php']) ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="pages.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= in_array($current_page, ['pages.php', 'page-edit.php']) ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-file-lines <?= in_array($current_page, ['pages.php', 'page-edit.php']) ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Pages &amp; Policies</span>
                     </div>
@@ -127,22 +140,22 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
         <div>
             <p class="px-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Settings</p>
             <nav class="space-y-0.5">
-                <a href="payment-settings.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'payment-settings.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="payment-settings.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'payment-settings.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-credit-card <?= $current_page === 'payment-settings.php' ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Payment Gateway</span>
                     </div>
                 </a>
 
-                <a href="smtp-settings.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'smtp-settings.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="smtp-settings.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'smtp-settings.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-paper-plane <?= $current_page === 'smtp-settings.php' ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Email &amp; SMTP</span>
                     </div>
                 </a>
 
-                <a href="settings.php" class="flex items-center justify-between px-2.5 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'settings.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
-                    <div class="flex items-center gap-2.5">
+                <a href="settings.php" class="flex items-center justify-between px-2 py-2 rounded-md font-medium text-xs transition-colors no-underline <?= $current_page === 'settings.php' ? 'bg-[#fe7c03] text-white font-semibold' : 'text-slate-700 hover:text-[#fe7c03] hover:bg-[#fff8f3]' ?>">
+                    <div class="flex items-center gap-2">
                         <span class="w-4 text-center"><i class="fa-solid fa-sliders <?= $current_page === 'settings.php' ? 'text-white' : 'text-slate-400' ?>"></i></span>
                         <span>Site Settings</span>
                     </div>
@@ -152,8 +165,8 @@ $admin_initial = strtoupper(substr($admin_name, 0, 1));
 
         <!-- Live Website Link -->
         <div class="pt-2">
-            <a href="../index.php" target="_blank" class="flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-medium text-slate-700 bg-slate-50 border border-slate-200 hover:bg-[#fff8f3] hover:text-[#fe7c03] hover:border-orange-200 transition-colors no-underline">
-                <div class="flex items-center gap-2.5">
+            <a href="../index.php" target="_blank" class="flex items-center justify-between px-2 py-2 rounded-md text-xs font-medium text-slate-700 bg-slate-50 border border-slate-200 hover:bg-[#fff8f3] hover:text-[#fe7c03] hover:border-orange-200 transition-colors no-underline">
+                <div class="flex items-center gap-2">
                     <span class="w-4 text-center text-[#fe7c03]"><i class="fa-solid fa-globe"></i></span>
                     <span>Live Website</span>
                 </div>

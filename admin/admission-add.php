@@ -330,7 +330,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             <div class="flex-1">
                 <?= $success_msg ?>
                 <div class="mt-2.5 flex items-center gap-3">
-                    <a href="admissions.php" class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-700 text-white rounded text-xs font-semibold hover:bg-emerald-800 no-underline">
+                    <a href="admissions.php" class="inline-flex items-center gap-1 px-3 py-1 bg-emerald-700 text-white rounded text-xs font-semibold hover:bg-emerald-800 no-underline">
                         View in Admissions List &rarr;
                     </a>
                 </div>
@@ -570,51 +570,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Passport Photo -->
                 <div class="border border-slate-200 rounded-md p-3 bg-slate-50/60">
-                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
                         <i class="fa-solid fa-camera text-[#fe7c03]"></i>
                         <span>Candidate Passport Photo</span>
                     </label>
-                    <input type="file" name="photo" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-[#fe7c03] file:text-white hover:file:bg-[#e06b00]">
+                    <input type="file" name="photo" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-[#fe7c03] file:text-white hover:file:bg-[#e06b00]">
                     <p class="text-[10px] text-slate-400 mt-1">Updates profile photo &amp; ID card badge</p>
                 </div>
 
                 <!-- Aadhaar Card -->
                 <div class="border border-slate-200 rounded-md p-3 bg-slate-50/60">
-                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
                         <i class="fa-solid fa-id-card text-sky-600"></i>
                         <span>Aadhaar Card Copy</span>
                     </label>
-                    <input type="file" name="aadhaar_card" accept=".pdf,image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
+                    <input type="file" name="aadhaar_card" accept=".pdf,image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
                     <p class="text-[10px] text-slate-400 mt-1">Aadhaar card front/back or e-Aadhaar PDF</p>
                 </div>
 
                 <!-- 10th Marksheet -->
                 <div class="border border-slate-200 rounded-md p-3 bg-slate-50/60">
-                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
                         <i class="fa-solid fa-graduation-cap text-indigo-600"></i>
                         <span>10th / Secondary Marksheet</span>
                     </label>
-                    <input type="file" name="marksheet10" accept=".pdf,image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
+                    <input type="file" name="marksheet10" accept=".pdf,image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
                     <p class="text-[10px] text-slate-400 mt-1">High school marksheet or certificate</p>
                 </div>
 
                 <!-- 12th / Graduation Marksheet -->
                 <div class="border border-slate-200 rounded-md p-3 bg-slate-50/60">
-                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
                         <i class="fa-solid fa-file-lines text-teal-600"></i>
                         <span>12th / Diploma / Degree Marksheet</span>
                     </label>
-                    <input type="file" name="marksheet12" accept=".pdf,image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
+                    <input type="file" name="marksheet12" accept=".pdf,image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
                     <p class="text-[10px] text-slate-400 mt-1">Intermediate or higher qualification proof</p>
                 </div>
 
                 <!-- Candidate Signature -->
                 <div class="border border-slate-200 rounded-md p-3 bg-slate-50/60">
-                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
                         <i class="fa-solid fa-signature text-amber-600"></i>
                         <span>Candidate Signature</span>
                     </label>
-                    <input type="file" name="signature" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
+                    <input type="file" name="signature" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-700 file:text-white hover:file:bg-slate-800">
                     <p class="text-[10px] text-slate-400 mt-1">Official signature copy</p>
                 </div>
             </div>
@@ -664,7 +664,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             <a href="admissions.php" class="px-4 py-2 rounded text-xs font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 transition-colors no-underline">
                 Cancel
             </a>
-            <button type="submit" id="submitAdmissionBtn" class="px-5 py-2.5 rounded bg-[#fe7c03] hover:bg-[#e06b00] text-white text-xs font-bold transition-colors inline-flex items-center gap-2">
+            <button type="submit" id="submitAdmissionBtn" class="px-5 py-2 rounded bg-[#fe7c03] hover:bg-[#e06b00] text-white text-xs font-bold transition-colors inline-flex items-center gap-2">
                 <i class="fa-solid fa-file-invoice"></i>
                 <span>Complete Admission &amp; Generate Receipt</span>
             </button>
@@ -761,7 +761,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const isFirst = (i === 1);
 
             scheduleHtml += `
-                <div class="flex items-center justify-between py-1.5 px-2.5 rounded ${isFirst ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-slate-50 text-slate-700'}">
+                <div class="flex items-center justify-between py-1.5 px-2 rounded ${isFirst ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-slate-50 text-slate-700'}">
                     <div>
                         <strong>Part ${i}:</strong> ${isFirst ? '1st Installment (Paid Now)' : i + 'th Installment (Upcoming)'}
                     </div>
